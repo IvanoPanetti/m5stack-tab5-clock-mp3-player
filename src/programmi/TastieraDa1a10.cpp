@@ -1,4 +1,3 @@
-//#include "MenuPrincipale.h"
 #include <M5Unified.h>
 #include "Orologio.h"
 #include "ScriptVariabiliGlobali.h"
@@ -23,10 +22,8 @@ void TastoOk()
 {
     static bool Inizializza1 = false; // Inizializza lo setta solo al primo passaggio
     if (!Inizializza1)
-    {
-        //M5.Display.setRotation(0);   // rotazione display
-        
-        // Disegna pulsante STOP
+    {   
+        // Disegna pulsante OK e NO
         drawButton(btnOK, TFT_GREEN, TFT_WHITE);
         drawButton(btnNO, TFT_BLACK, TFT_WHITE);
         Inizializza1 = true;
@@ -183,8 +180,3 @@ void TastieraDa1a10()
         delay(10); // evita loop troppo pesante
     }
 }
-
-
-
-
-

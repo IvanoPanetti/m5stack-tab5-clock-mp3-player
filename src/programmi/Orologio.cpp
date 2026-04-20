@@ -2,7 +2,6 @@
 #include <M5Unified.h>
 #include "Orologio.h"
 //#include "Speaker.h"
-//#include "AscoltaSequenziale.h"
 #include "ScriptVariabiliGlobali.h"
 
 // Librerie per SD_MMC
@@ -65,9 +64,8 @@ void Quadrante ()
     sy = sin((i-90)*0.0174532925);
     x0 = sx*110+AnalogPosX;
     yy0 = sy*110+AnalogPosY;
+
     // Draw minute markers
-    //drawButton(btnLuminosita3,TFT_GREEN,TFT_WHITE);  //  commentata perche' pulsante trasparente
-    //tft.drawPixel(x0, yy0, TFT_WHITE);
 
     // Draw main quadrant dots
     if(i==0 || i==180)  tft.fillCircle(x0, yy0, 5, TFT_WHITE);
@@ -105,6 +103,25 @@ if (SvegliaOn == true)
   }
 }
 */
+
+void TimerDisplay()
+{
+  //visualizza Stato  Timer Display
+  tft.setFont(&fonts::Font4); //setto il font piccolo
+  tft.setCursor(622,124);
+  if( SchermoSempreAcceso)
+  {
+    tft.setTextColor(TFT_WHITE,TFT_RED);
+    tft.print("No  Off");
+  }
+  else
+  {
+    tft.setTextColor(TFT_CYAN,TFT_BLUE);
+    tft.print("Auto Off");
+  }
+  tft.setTextColor(TFT_WHITE,TFT_BLACK);
+  tft.setFont(&fonts::FreeSans24pt7b); //ripristino il font grande
+}
 
 void Lancette()
 {
@@ -211,6 +228,7 @@ void Orologio()
     readINA226();
     Lancette(); //aggiorna orario
     StatoSpeaker();
+    TimerDisplay();
     //--------------------------Sveglia();  // verifica se devo accendere la aveglia in caso affermiativo all'avvio STATE_SVEGLIA
     lastSensorUpdate = now;
   }

@@ -93,6 +93,7 @@ if (CambiaImmagine("/foto/image1.raw")) {
     delay(1000);
   }
 */
+
 bool CambiaImmagine(const char *path)
 {
   if (!path) return false;

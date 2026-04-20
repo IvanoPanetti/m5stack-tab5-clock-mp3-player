@@ -286,4 +286,3 @@ void AggiornaCanzoni()
   mp3Files.shrink_to_fit();
   currentState = STATE_OROLOGIO;
 }
-

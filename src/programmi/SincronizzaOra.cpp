@@ -118,24 +118,10 @@ void SincronizzaOra()
     Sfondo();
     //tft.println("Avvio sincronizzazione orario...");
     tft.println("Starting time synchronization...");
-    WifiOn(); // funzione di connessione alla rete locale
-    delay(1000); // pausa di  prova: attendo assestamento della connessione
 
     // 1) Attendi connessione WiFi reale
-    //tft.println("Connessione WiFi...");
-    //int wifiTimeout = 0;
-    //while (WiFi.status() != WL_CONNECTED && wifiTimeout < 40) {
-    //    delay(100);
-    //    wifiTimeout++;
-    //}
-
-    //if (WiFi.status() != WL_CONNECTED) {
-    //    tft.println("Errore: WiFi non connesso");
-    //    WifiOff();
-    //    return;
-    //}
-
-    //tft.println("WiFi connesso!");
+    WifiOn(); // funzione di connessione alla rete locale
+    delay(1000); // pausa di  prova: attendo assestamento della connessione
 
     // 2) Rileva automaticamente il fuso orario
     //tft.println("Rilevamento fuso orario...");

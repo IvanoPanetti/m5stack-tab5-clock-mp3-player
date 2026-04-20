@@ -1,4 +1,5 @@
 #pragma once
+
 void Orologio();
 void Sfondo();
 void Lancette();

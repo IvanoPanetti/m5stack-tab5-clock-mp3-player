@@ -2,6 +2,3 @@
 
 void TastieraDa1a10();
 void TastoOk();
-
-
-

@@ -6,7 +6,6 @@
 #include "programmi/Orologio.h"
 #include "programmi/Arresto.h"
 #include "programmi/MenuPrincipale.h"
-//#include "programmi/Arresto.h"
 #include "programmi/MenuWifi.h"
 #include "programmi/SincronizzaOra.h"
 #include "programmi/SincronizzaOraManuale.h"
@@ -121,6 +120,7 @@ void setup()
         ssid=ssid1;
         password=password1;
         if (SchermoSempreAcceso == 1) DisplaySpento = 1; // Se SchermoSempreAcceso e' 1  lo schermo non si spegne mai
+        if (SchermoSempreAcceso == 0) DisplaySpento = 0; // Se SchermoSempreAcceso e' 1  lo schermo non si spegne mai
       }
   
   // Modalita' SDMMC 1 bit  Ma non funziona 
@@ -253,4 +253,3 @@ void loop()
       break;
   }
 }
-
