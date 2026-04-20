@@ -156,3 +156,5 @@ Licenza: **MIT**, salvo diversa indicazione nei componenti di terze parti.
 
 ### 📅 Updated: 21‑04‑2026  
 **Author: Ivano Panetti**
+
+---
