@@ -1,0 +1,55 @@
+ssid1 = Omnitel-85634245 ; main wifi network
+password1 = zhuCxdizhG1LFhb5VUwrovuB ; main wifi password
+
+ssid2 =  ssid rete 2 ; Wi-Fi network 2
+password2 = Password rete 2 ; network password 2
+
+ssid3 =  ssid  rete3 ; Wi-Fi network 3
+password3 = Password rete 3 ; network password 3
+
+Nomewebradio1 = 977 Today's Hits (USA)  ; radio station name 1
+URLwebradio1 =  http://playerservices.streamtheworld.com/api/livestream-redirect/977_HITS.mp3 ; URL station 1
+Codecwebradio1 = 0 ; 0 for radio .mp3 1 for radio .aac
+Nomewebradio2 = ice1 somafm ; radio station name 2
+URLwebradio2 = http://ice1.somafm.com/dronezone-32.aac ; URL station 2
+Codecwebradio2 = 1 ; 0 for radio .mp3 1 for radio .aac
+
+Nomewebradio3 = Nome WebRadio 3 ; radio station name 3
+URLwebradio3 = URL webradio 3 ; URL station 3
+Codecwebradio3 = 0 ; 0 for radio .mp3 1 for radio .aac
+
+Nomewebradio4 = Nome WebRadio 4 ; radio station name 4
+URLwebradio4 = URL webradio 4 ; URL station 4
+Codecwebradio4 = 0 ; 0 for radio .mp3 1 for radio .aac
+
+Nomewebradio5 = Nome WebRadio 5 ; radio station name 5
+URLwebradio5 = URL webradio 5 ; URL station 5
+Codecwebradio5 = 0 ; 0 for radio .mp3 1 for radio .aac
+
+Nomewebradio6 = Nome WebRadio 6 ; radio station name 6
+URLwebradio6 = URL webradio 6 ; URL station 6
+Codecwebradio6 = 0 ; 0 for radio .mp3 1 for radio .aac
+
+Nomewebradio7 = Nome WebRadio 7 ; radio station name 7
+URLwebradio7 = URL webradio 7 ; URL station 7
+Codecwebradio7 = 0 ; 0 for radio .mp3 1 for radio .aac
+
+Nomewebradio8 = Nome WebRadio 8 ; radio station name 8
+URLwebradio8 = URL webradio 8 ; URL station 8
+Codecwebradio8 = 0 ; 0 for radio .mp3 1 for radio .aac
+
+Nomewebradio9 = Nome WebRadio 9 ; radio station name 9
+URLwebradio9 = URL webradio 9 ; URL station 9
+Codecwebradio9 = 0 ; 0 for radio .mp3 1 for radio .aac
+
+Nomewebradio10 = Nome WebRadio 10 ; radio station name 10
+URLwebradio10 = URL webradio 10 ; URL station 10
+Codecwebradio10 = 0 ; 0 for radio .mp3 1 for radio .aac
+
+Nomewebradio11 = Nome WebRadio 11 ; radio station name 11
+URLwebradio11 = URL webradio 10 ; URL station 11
+Codecwebradio10 = 0 ; 0 for radio .mp3 1 for radio .aac
+
+SchermoSempreAcceso = 0 ; if it is 1 the screen always remains lit if it is 0 when the second timer expires it is turned off
+
+BatteriaPresente = 0 ; If the battery is present, enter 1 if it is absent, 0 is used for automatic shutdown if the charge is low.
