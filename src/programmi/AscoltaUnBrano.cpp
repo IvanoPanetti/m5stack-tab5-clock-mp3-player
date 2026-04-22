@@ -102,7 +102,9 @@ void disegnaPagina()
     drawButton(btnPaginaAvanti, TFT_RED, TFT_WHITE);
     drawButton(btnEsci, TFT_RED, TFT_WHITE);
 
-    tft.setFont(&FreeSans18pt7b);
+    //tft.setFont(&FreeSans18pt7b);   NON PIU VALIDO, NON SO IL MOTIVO
+    tft.setFont(&fonts::Font4);
+    tft.setTextSize(1.4);
     
     // 🔥 QUI IL PROBLEMA: mancavano start e end
     int start = paginaCorrente * braniPerPagina;
@@ -298,6 +300,7 @@ void AscoltaUnBrano()
                         readINA226();
                         Lancette(); // aggiorna orario
                         StatoSpeaker();
+                        TimerDisplay();
                         lastSensorUpdate = now;
                     }
   

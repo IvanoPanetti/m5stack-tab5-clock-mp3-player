@@ -12,6 +12,7 @@
 #include "programmi/MenuAudio.h"
 #include "programmi/AscoltaUnBrano.h"
 #include "programmi/AscoltaSequenziale.h"
+#include "programmi/ImpostaSveglia.h"
 
 ///////////////////////////////////  i TEST QUI
 
@@ -68,7 +69,7 @@ void setup()
   // setto i pin per l'uso del wifi
   WiFi.setPins(SDIO2_CLK, SDIO2_CMD, SDIO2_D0, SDIO2_D1, SDIO2_D2, SDIO2_D3, SDIO2_RST);
 
-  tft.setFont(&fonts::Font0);  // fonts::Font0 fonts::Font2 fonts::Font4 fonts::Font6 fonts::Font7 fonts::Font8
+  //tft.setFont(&fonts::Font0);  // fonts::Font0 fonts::Font2 fonts::Font4 fonts::Font6 fonts::Font7 fonts::Font8
   tft.setFont(&fonts::FreeSans24pt7b);
 
   tft.setTextSize(1);
@@ -185,11 +186,10 @@ void setup()
   */
   //---------------------------------
   
-  /*
   // Controllo se la sveglia è attiva e carico l'orario
-  if (SD.exists("/Settaggi/Sveglia.txt"))
+  if (SD.exists("/Sveglia.txt"))
   {
-    File file = SD.open("/Settaggi/Sveglia.txt", FILE_READ);
+    File file = SD.open("/Sveglia.txt", FILE_READ);
     if (!file)
     {
         tft.println("Impossibile aprire Sveglia.txt");
@@ -212,11 +212,11 @@ void setup()
   {
     SvegliaOn = false;
   }
-  */
-
+  
   delay(1000);
   //tft.clear();
 }
+
 
 void loop()
 {
@@ -238,6 +238,12 @@ void loop()
     case STATE_ASCOLTA_SEQUENZIALE:
       DecrementoCanzone = 50; // numero canzoni che devo riprodurre
       AscoltaSequenziale();
+      break;
+    case STATE_IMPOSTA_SVEGLIA:
+      ImpostaSveglia();
+      break;
+    case STATE_ELIMINA_SVEGLIA:
+      EliminaSveglia();
       break;
     case STATE_ARRESTO:
       ArrestoSetup();

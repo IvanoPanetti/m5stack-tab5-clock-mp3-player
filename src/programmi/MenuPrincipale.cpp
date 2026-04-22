@@ -42,13 +42,15 @@ void MenuPrincipale()
         drawButton(btnMenuWifi, TFT_RED, TFT_WHITE);
 
         //  Pulsante Display Sempre Acceso Verifico Prima cosa devo scrivere nella label
-        if  (SchermoSempreAcceso)
+        if  (!SchermoSempreAcceso)
         {
             btnDisplayAcceso.label = " Display always on ON ";
+            //DisplaySpento = 0;
         }
         else  //(SchermoSempreAcceso == 1)
         {
             btnDisplayAcceso.label = " Display always on OFF ";
+            //DisplaySpento = 1;
         }
         drawButton(btnDisplayAcceso, TFT_RED, TFT_WHITE);
 
@@ -107,15 +109,8 @@ void MenuPrincipale()
                 Inizializza = false;
                 // Toggle stato "Schermo sempre acceso"
                 SchermoSempreAcceso = !SchermoSempreAcceso;   // toggle 0/1
-
-                if (SchermoSempreAcceso)
-                {
-                    DisplaySpento = 0;  // luminosità attiva
-                }
-                else
-                {
-                    DisplaySpento = 1;  // schermo spento / luminosità minima
-                }
+                if(SchermoSempreAcceso) DisplaySpento=1;
+                if(!SchermoSempreAcceso) DisplaySpento=0;
                 currentState = STATE_OROLOGIO;
                 break;
             }

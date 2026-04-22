@@ -100,9 +100,9 @@ uint8_t DisplaySpento = 0 ; //0 ;
 ///////// INIZIO VARIABILI USATE PER LE TEMPORIZAZIONI PRINCIPALMENTE ATTENUAZIONE DEL DISPLAY  ////
 unsigned long previousMillis = 0; // Variabile per memorizzare l'ultimo tempo
 unsigned long currentMillis = 0;
-const long interval = 20000;  // 1 minuto Intervallo desiderato per attenuazione intermedia (es. 3000ms = 3 secondi)
+const long interval = 20000;  // 20 secondi Intervallo desiderato per attenuazione intermedia (es. 3000ms = 3 secondi)
 unsigned long previousMillis1 = 0; // Variabile per memorizzare l'ultimo tempo
-const long interval1 = 40000;  // 5 minuti Intervallo desiderato per attenuazione minima (es. 3000ms = 3 secondi)
+const long interval1 =40000;  // 40 secondi Intervallo desiderato per attenuazione minima (es. 3000ms = 3 secondi)
 unsigned long previousMillis3 = 0; // Variabile per memorizzare l'ultimo tempo
 
 uint8_t ss= 10;           // secondi

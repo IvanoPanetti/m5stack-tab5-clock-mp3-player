@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <M5Unified.h>
 #include "Orologio.h"
+#include "AscoltaSequenziale.h"
 //#include "Speaker.h"
 #include "ScriptVariabiliGlobali.h"
 
@@ -75,14 +76,14 @@ void Quadrante ()
   targetTime = millis() + 1000;
 }
 
-/*
 void Sveglia()
 {
 if (SvegliaOn == true)
   {
-    tft.setCursor(300,350);
+    tft.setCursor(400,350);
     tft.setTextColor(RED,TFT_BLACK);
-    tft.print ("Sveglia ON  ");
+    //tft.print ("Sveglia  ");
+    tft.print ("Alarm    ");
     if (SvegliaOre < 10)  tft.print("0");
     tft.print(SvegliaOre) ;
     tft.print(":");
@@ -91,7 +92,7 @@ if (SvegliaOn == true)
     tft.setTextColor(TFT_WHITE,TFT_BLACK);
     if (SvegliaOre == hh24 && SvegliaMinuti == mm)
     {
-      SD.remove  ("/Settaggi/Sveglia.txt"); // Rimuovo il file sd orario Sveglia
+      SD.remove  ("/Sveglia.txt"); // Rimuovo il file sd orario Sveglia
       IntensitaLuce=3;
       Inizializza = false; // serve per fare comparire il pulsante menu in orologio
       tft.setBrightness(DisplayAcceso);
@@ -102,7 +103,6 @@ if (SvegliaOn == true)
     }
   }
 }
-*/
 
 void TimerDisplay()
 {
@@ -229,7 +229,7 @@ void Orologio()
     Lancette(); //aggiorna orario
     StatoSpeaker();
     TimerDisplay();
-    //--------------------------Sveglia();  // verifica se devo accendere la aveglia in caso affermiativo all'avvio STATE_SVEGLIA
+    Sveglia();  // verifica se devo accendere la aveglia in caso affermiativo all'avvio STATE_SVEGLIA
     lastSensorUpdate = now;
   }
 

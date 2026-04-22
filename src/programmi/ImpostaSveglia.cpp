@@ -99,9 +99,11 @@ void ImpostaSveglia()
     {
         TastoSceltaOk = false;
         SvegliaOn = true;
-        File file = SD.open("/Settaggi/Sveglia.txt", FILE_WRITE);
+        File file = SD.open("/Sveglia.txt", FILE_WRITE);
         if (!file) 
         {
+            tft.setCursor(10,320);
+            //tft.println("Impossibile aprire il file per la scrittura");
             tft.println("Failed to open file for writing");
             delay (5000);
             return;
@@ -113,13 +115,46 @@ void ImpostaSveglia()
             delay (100);
             file.close();
         }
-
     }
+
     if (TastoSceltaNO == true)
     {
         TastoSceltaNO = false;
         SvegliaOn = false;
-        SD.remove  ("/Settaggi/Sveglia.txt"); // fimuovo il file sd orario Sveglia
+        SD.remove  ("/Sveglia.txt"); // rimuovo il file sd orario Sveglia
+    }
+    currentState = STATE_OROLOGIO;
+}
+
+void EliminaSveglia()
+{
+    tft.clear();
+    Sfondo();
+    if(!SvegliaOn)
+    {
+        tft.setCursor(100,500);
+        //tft.print(" La Sveglia Non E' Attiva ");
+        tft.print(" The Alarm Is Not Active ");
+        delay(3000);
+        currentState = STATE_OROLOGIO;
+        return;
+    }
+
+    tft.setCursor(150,500);
+    //tft.println (" --- Elimina Sveglia --- ");
+    tft.println ("  --- Delete Alarm ---  ");
+    TastoOk();
+
+    if(TastoSceltaOk == true)
+    {
+        TastoSceltaOk = false;
+        SvegliaOn = false;
+        SD.remove  ("/Sveglia.txt"); // rimuovo il file sd orario Sveglia
+    }
+
+    if(TastoSceltaNO == true)
+    {
+       TastoSceltaNO = false; 
     }
     currentState = STATE_OROLOGIO;
 }

@@ -205,6 +205,7 @@ void AscoltaSequenziale()
         readINA226();
         Lancette(); // aggiorna orario
         StatoSpeaker();
+        TimerDisplay();
         lastSensorUpdate = now;
       }
   

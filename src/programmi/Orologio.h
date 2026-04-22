@@ -5,3 +5,4 @@ void Sfondo();
 void Lancette();
 void Quadrante();
 void StatoSpeaker();
+void TimerDisplay();
