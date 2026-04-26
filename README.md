@@ -11,18 +11,7 @@ This project turns the **M5Stack Tab5** into a combined **analog clock** and **M
 It was created for fun, with the help of AI, and may contain bugs.  
 Use it freely at your own risk.
 
----
-
-## 🔄 Changelog – Latest Updates
-
-24/04/26
-
-Added in the Audio Menu a button to control the Speaker:  
-If the speaker is ON, the audio will be monophonic. The sound will still be available through the headphones.
-This is because the TAB5 has only one built‑in speaker.
-If the speaker is OFF, the headphone audio will be stereo.
-
-22/04/26
+🔄 Changelog – Latest Updates
 Changed the font that caused a compilation error.
 
 Fixed a timing bug in the screen‑off function.
@@ -91,37 +80,18 @@ I am not responsible for any damage or inconvenience caused by this software.
 
 License: **MIT**, unless otherwise specified by third‑party components.
 
----
+🛠️ Planned Features
+Web radio player (.mp3 / .aac codecs)
 
-## 🛠️ **Planned Features** 
-- Web radio player (.mp3 / .aac codecs)
-  
+Alarm clock
 
----
----
-
-
-
-## 🇮🇹 Versione Italiana
-
-### **Descrizione**
-Questo progetto trasforma l’**M5Stack Tab5** in un **orologio analogico** e **lettore MP3**.  
-È stato creato per divertimento, con il supporto dell’AI, e può contenere bug.  
+🇮🇹 Versione Italiana
+Descrizione
+Questo progetto trasforma l’M5Stack Tab5 in un orologio analogico e lettore MP3.
+È stato creato per divertimento, con il supporto dell’AI, e può contenere bug.
 Usatelo liberamente a vostro rischio.
 
----
-
-## 🔄 Registro Modifiche – Ultimi Aggiornamenti
-
-24/04/26
-
-È stato aggiunto al menu Audio un pulsante per controllare l'altoparlante:
-Se l'altoparlante è acceso, l'audio sarà monofonico. Il suono sarà comunque disponibile tramite le cuffie.
-Questo perché il TAB5 ha un solo altoparlante integrato.
-Se l'altoparlante è spento, l'audio in cuffia sarà stereo.
-
-
-22/04/26
+🔄 Registro Modifiche – Ultimi Aggiornamenti
 Cambiato il font che causava un errore di compilazione.
 
 Corretto un errore di temporizzazione nello spegnimento dello schermo.
@@ -191,12 +161,7 @@ Non sono responsabile di eventuali danni o disagi causati da questo software.
 
 Licenza: **MIT**, salvo diversa indicazione nei componenti di terze parti.
 
----
+🛠️ Prossimi Sviluppi
+Player WebRadio (.mp3 / .aac)
 
-## 🛠️ **Prossimi Sviluppi**
-- Player WebRadio (.mp3 / .aac)    
-
----
-
-### 📅 Updated: 22‑04‑2026  
-**Author: Ivano Panetti**
+AGGIORNATO 22/04/26
