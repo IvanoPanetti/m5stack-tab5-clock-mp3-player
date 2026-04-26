@@ -164,4 +164,4 @@ Licenza: **MIT**, salvo diversa indicazione nei componenti di terze parti.
 🛠️ Prossimi Sviluppi
 Player WebRadio (.mp3 / .aac)
 
-AGGIORNATO 22/04/26
+AGGIORNATO 26/04/26
