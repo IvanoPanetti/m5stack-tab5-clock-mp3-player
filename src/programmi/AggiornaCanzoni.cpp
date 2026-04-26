@@ -29,10 +29,6 @@ void splitSong(const String &full, String &artista, String &titolo)
 
     artista = full.substring(0, sep);
     titolo  = full.substring(sep + 1);
-
-    // Rimuove spazi iniziali e finali
-    artista.trim();
-    titolo.trim();
 }
 
 //////////////  INIZIO Riordino la lista Alfabetica e Casuale //////////////////////////

@@ -79,8 +79,15 @@ void MenuAudio()
         //  Pulsante Menu Web Radio
         //------------------------------------drawButton(btnMenuWebRadio, TFT_RED, TFT_WHITE);
         
+
+
+
+
+
+
         //  Pulsante Speaker ON/OFF
-        //  Pulsante Speacker: Verifico Prima cosa devo scrivere nella label
+        //drawButton(btnSpeaker, TFT_GREEN, TFT_WHITE);
+        //  Pulsante Display Sempre Acceso Verifico Prima cosa devo scrivere nella label
         if  (SpeakerON)
         {
             btnSpeaker.label = " Speacker OFF Audio STEREO ";
@@ -93,6 +100,21 @@ void MenuAudio()
         }
         drawButton(btnSpeaker, TFT_RED, TFT_WHITE);
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //  indietro ritorna a orologio
         drawButton(btnIndietro, TFT_RED, TFT_WHITE);  //
 
