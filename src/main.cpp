@@ -13,6 +13,7 @@
 #include "programmi/AscoltaUnBrano.h"
 #include "programmi/AscoltaSequenziale.h"
 #include "programmi/ImpostaSveglia.h"
+#include "programmi/Speaker.h"
 
 ///////////////////////////////////  i TEST QUI
 
@@ -192,7 +193,8 @@ void setup()
     File file = SD.open("/Sveglia.txt", FILE_READ);
     if (!file)
     {
-        tft.println("Impossibile aprire Sveglia.txt");
+        //tft.println("Impossibile aprire Sveglia.txt");
+        tft.println("impossible to open Sveglia.txt");
         delay(2000);
         SvegliaOn = false;
         return;
@@ -243,7 +245,11 @@ void loop()
       ImpostaSveglia();
       break;
     case STATE_ELIMINA_SVEGLIA:
+    
       EliminaSveglia();
+      break;
+    case STATE_SPEAKER:
+      Speaker();
       break;
     case STATE_ARRESTO:
       ArrestoSetup();

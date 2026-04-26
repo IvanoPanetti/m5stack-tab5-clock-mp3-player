@@ -26,11 +26,8 @@ static Button btnImpostaSveglia =     { 20,760,680,80, " Set The Alarm "};
 //static Button btnEliminaSveglia =     { 20,860,680,80, " Elimina Sveglia "};
 static Button btnEliminaSveglia =     { 20,860,680,80, " Delete Alarm "};
 
-
-
-
 //---------------------------static Button btnMenuWebRadio =       { 20, 960, 680, 80, " Menu WebRadio "};
-//---------------------------static Button btnSpeaker =            { 20, 1060, 680, 80, " Speaker Acceso/Spento "};
+static Button btnSpeaker =            { 20, 1060, 680, 80, " "};
 static Button btnIndietro =           { 20, 1160, 680, 80, " <---<< "}; // non usato per ora
 
 void MenuAudio()
@@ -81,10 +78,21 @@ void MenuAudio()
 
         //  Pulsante Menu Web Radio
         //------------------------------------drawButton(btnMenuWebRadio, TFT_RED, TFT_WHITE);
-
+        
         //  Pulsante Speaker ON/OFF
-        //------------------------------------drawButton(btnSpeaker, TFT_GREEN, TFT_WHITE);
-      
+        //  Pulsante Speacker: Verifico Prima cosa devo scrivere nella label
+        if  (SpeakerON)
+        {
+            btnSpeaker.label = " Speacker OFF Audio STEREO ";
+            //DisplaySpento = 0;
+        }
+        else  //(SchermoSempreAcceso == 1)
+        {
+            btnSpeaker.label = " Speacker ON mode MONO ";
+            //DisplaySpento = 1;
+        }
+        drawButton(btnSpeaker, TFT_RED, TFT_WHITE);
+        
         //  indietro ritorna a orologio
         drawButton(btnIndietro, TFT_RED, TFT_WHITE);  //
 
@@ -188,7 +196,6 @@ void MenuAudio()
                 currentState = STATE_ELIMINA_SVEGLIA;
                 break;
             }
-            /*
 
              if (isTouched(btnSpeaker, t.x, t.y))
             {
@@ -196,8 +203,6 @@ void MenuAudio()
                 currentState = STATE_SPEAKER;
                 break;
             }
-
-            */
 
             // pulsante ultimo ritorna a orologio
             if (isTouched(btnIndietro, t.x, t.y))

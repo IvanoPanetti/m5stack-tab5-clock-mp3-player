@@ -25,7 +25,8 @@ static Button btnEsci           = {570, 1200, 150, 80, "Exit"};
 // Pulsanti   ascolto canzone Volume e Stop
 static Button btnVolumeSu   = {200, 1200, 150, 80, "Vol +"};
 static Button btnVolumeGiu     = {  0, 1200, 150, 80, "Vol -"};
-static Button btnStop          = {570, 1200, 150, 80, "Esci"};
+//static Button btnStop          = {570, 1200, 150, 80, "Esci"};
+static Button btnStop          = {570, 1200, 150, 80, "Exit"};
 static Button btnLuminosita3 = {0,0,720,1280, ""};
 
 // struttura dati

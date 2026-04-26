@@ -29,6 +29,10 @@ void splitSong(const String &full, String &artista, String &titolo)
 
     artista = full.substring(0, sep);
     titolo  = full.substring(sep + 1);
+
+    // Rimuove spazi iniziali e finali
+    artista.trim();
+    titolo.trim();
 }
 
 //////////////  INIZIO Riordino la lista Alfabetica e Casuale //////////////////////////
@@ -98,7 +102,8 @@ void ordinelfabetico(const char* folder)
     out.println(f);
   }
   out.close();
-  tft.println("Creato file:");
+  //tft.println("Creato file:");
+  tft.println("Created file:");
   tft.println(" ");
   tft.println(fullPath);
   delay(3000);
@@ -110,7 +115,8 @@ void ordineCasuale(const char* folder)
 {
   if (mp3Files.empty())
   {
-    tft.println("Nessun MP3 trovato");
+    //tft.println("Nessun mp3 Trovato");
+    tft.println("No mp3 Found");
     delay(2000);
     return;
   }
@@ -136,7 +142,8 @@ void ordineCasuale(const char* folder)
   File out = SD.open(fullPath, FILE_WRITE);
   if (!out)
   {
-    tft.println("Errore creazione file OrdineCasuale.txt");
+    //tft.println("Errore creazione file OrdineCasuale.txt");
+    tft.println("Error creating file OrdineCasuale.txt");
     delay(2000);
     return;
   }
@@ -150,7 +157,8 @@ void ordineCasuale(const char* folder)
   out.close();
   tft.clear();
   tft.setCursor(0,0);
-  tft.println("Creato file:");
+  //tft.println("Creato file:");
+  tft.println("Created file:");
   tft.println(" ");
   tft.println(fullPath);
   delay(3000);
@@ -167,7 +175,8 @@ void creaCanzoneInEsecuzione(const char* folder)
   File out = SD.open(fullPath, FILE_WRITE);
   if (!out)
   {
-    tft.println("Errore creazione file CanzoneInEsecuzione.txt");
+    //tft.println("Errore creazione file CanzoneInEsecuzione.txt");
+    tft.println("Error creating file CanzoneInEsecuzione.txt");
     delay(2000);
     return;
   }
@@ -176,7 +185,8 @@ void creaCanzoneInEsecuzione(const char* folder)
   out.println("1");
   out.close();
 
-  tft.println("Creato file:");
+  //tft.println("Creato file:");
+  tft.println("Created file:");
   tft.println(" ");
   tft.println(fullPath);
   delay(3000);
@@ -186,7 +196,8 @@ void ordineAlfabeticoPerTitolo(const char* folder)
 {
     if (mp3Files.empty())
     {
-        tft.println("Nessun MP3 trovato");
+        //tft.println("Nessun MP3 trovato");
+        tft.println("No MP3s found");
         delay(2000);
         return;
     }
@@ -222,7 +233,8 @@ void ordineAlfabeticoPerTitolo(const char* folder)
     File out = SD.open(fullPath, FILE_WRITE);
     if (!out)
     {
-        tft.println("Errore creazione file AlfabeticoCanzone.txt");
+        //tft.println("Errore creazione file AlfabeticoCanzone.txt");
+        tft.println("Error creating file AlfabeticoCanzone.txt");
         delay(2000);
         return;
     }
@@ -237,7 +249,8 @@ void ordineAlfabeticoPerTitolo(const char* folder)
 
     tft.clear();
     tft.setCursor(0,0);
-    tft.println("Creato file:");
+    //tft.println("Creato file:");
+    tft.println("Created file:");
     tft.println(" ");
     tft.println(fullPath);
     delay(3000);
@@ -248,7 +261,8 @@ void AggiornaCanzoni()
 {
   if (!SD.begin())
   {
-    tft.println("SD non inizializzata");
+    //tft.println("SD non inizializzata");
+    tft.println("SD not initialized");
     delay(2000);
     return;
   }
