@@ -262,7 +262,7 @@ void readINA226()
   tft.printf("V: %.2f  ", voltage);
   // se la batteria e' bassa  ferma il dispositivo
 
-  if (BatteriaPresente == 0)
+  if (BatteriaPresente == 1)
   {
     if (voltage < Vmin) 
       { 
