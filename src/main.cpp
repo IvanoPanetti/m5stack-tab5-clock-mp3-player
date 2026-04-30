@@ -11,8 +11,10 @@
 #include "programmi/SincronizzaOraManuale.h"
 #include "programmi/MenuAudio.h"
 #include "programmi/AscoltaUnBrano.h"
+#include "programmi/AscoltaNumeroBrani.h"
 #include "programmi/AscoltaSequenziale.h"
 #include "programmi/ImpostaSveglia.h"
+//#include "programmi/MenuWebRadio.h"
 #include "programmi/Speaker.h"
 
 ///////////////////////////////////  i TEST QUI
@@ -53,16 +55,8 @@ void setup()
 {
   Serial.begin(115200);
   auto cfg = M5.config();
-
   auto spk_cfg = M5.Speaker.config();
   spk_cfg.stereo = false;
-  M5.Speaker.config(spk_cfg);
-  M5.Speaker.begin();
-
-
-
-
-
   M5.begin(cfg);
   M5.Speaker.begin();               // assicura che il codec sia inizializzato
   M5.Speaker.setVolume(Volume);
@@ -78,9 +72,9 @@ void setup()
   tft.print(" H E L L O     W O R L D ");
 
   delay(100);
-  tft.fillRect(180,100,100,100,TFT_RED);
-  tft.fillRect(300,100,100,100,TFT_GREEN);
-  tft.fillRect(420,100,100,100,TFT_BLUE);
+  tft.fillRect(180,100,100,100,TFT_GREEN);
+  tft.fillRect(300,100,100,100,TFT_WHITE);
+  tft.fillRect(420,100,100,100,TFT_RED);
   delay (100);
   //tft.drawString("Versione" ,20,250); // Italiano
   tft.drawString("Version" ,20,250); // English
@@ -237,6 +231,9 @@ void loop()
     case STATE_ASCOLTA_UN_BRANO:
       AscoltaUnBrano();
       break;
+    case STATE_ASCOLTA_NUMERO_BRANI:
+      AscoltaNumeroBrani();
+      break;
     case STATE_ASCOLTA_SEQUENZIALE:
       DecrementoCanzone = 50; // numero canzoni che devo riprodurre
       AscoltaSequenziale();
@@ -245,9 +242,9 @@ void loop()
       ImpostaSveglia();
       break;
     case STATE_ELIMINA_SVEGLIA:
-    
       EliminaSveglia();
       break;
+
     case STATE_SPEAKER:
       Speaker();
       break;

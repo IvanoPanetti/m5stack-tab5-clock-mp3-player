@@ -12,7 +12,8 @@
 static Button btnAscoltaUnBrano =     { 20, 60, 680, 80,  " Listen to a song "};
 //static Button btnAscoltoSequenziale = { 20, 160, 680, 80, " Ascolto Sequenziale "};
 static Button btnAscoltoSequenziale = { 20, 160, 680, 80, " Sequential Listening "};
-//---------------------------static Button btnAscoltoNumeroBrani = { 20, 260, 680, 80, " Ascolta Numero Brani "};
+//static Button btnAscoltoNumeroBrani = { 20, 260, 680, 80, " Ascolta Numero Brani "};
+static Button btnAscoltoNumeroBrani = { 20, 260, 680, 80, " Listen To Number Of Songs "};
 //static Button btnCartellaMP3_1 =      { 20,360,680,80, " Cartella MP3 1 "};
 static Button btnCartellaMP3_1 =      { 20,360,680,80, " Folder MP3 1 "};
 //static Button btnCartellaMP3_2 =      { 20,460,680,80, " Cartella MP3 2 "};
@@ -25,8 +26,7 @@ static Button btnAggiornaCanzoni =    { 20,660,680,80, " Update Song List "};
 static Button btnImpostaSveglia =     { 20,760,680,80, " Set The Alarm "};
 //static Button btnEliminaSveglia =     { 20,860,680,80, " Elimina Sveglia "};
 static Button btnEliminaSveglia =     { 20,860,680,80, " Delete Alarm "};
-
-//---------------------------static Button btnMenuWebRadio =       { 20, 960, 680, 80, " Menu WebRadio "};
+//-------------------------------------static Button btnMenuWebRadio =       { 20, 960, 680, 80, " Menu WebRadio "};
 static Button btnSpeaker =            { 20, 1060, 680, 80, " "};
 static Button btnIndietro =           { 20, 1160, 680, 80, " <---<< "}; // non usato per ora
 
@@ -56,7 +56,7 @@ void MenuAudio()
         drawButton(btnAscoltoSequenziale, TFT_RED, TFT_WHITE);
 
         //  Pulsante Menu Ascolto Numero Brani
-        //------------------------------------drawButton(btnAscoltoNumeroBrani, TFT_RED, TFT_WHITE);
+        drawButton(btnAscoltoNumeroBrani, TFT_RED, TFT_WHITE);
 
         //  Imposta Cartella mp3_1
         drawButton(btnCartellaMP3_1, TFT_RED, TFT_WHITE);
@@ -77,17 +77,11 @@ void MenuAudio()
         drawButton(btnEliminaSveglia, TFT_RED, TFT_WHITE);
 
         //  Pulsante Menu Web Radio
-        //------------------------------------drawButton(btnMenuWebRadio, TFT_RED, TFT_WHITE);
+        //----------------------------------------------------drawButton(btnMenuWebRadio, TFT_RED, TFT_WHITE);
         
-
-
-
-
-
-
         //  Pulsante Speaker ON/OFF
-        //drawButton(btnSpeaker, TFT_GREEN, TFT_WHITE);
-        //  Pulsante Display Sempre Acceso Verifico Prima cosa devo scrivere nella label
+        //  drawButton(btnSpeaker, TFT_GREEN, TFT_WHITE);
+        //  Pulsante Speacker Verifico Prima cosa devo scrivere nella label
         if  (SpeakerON)
         {
             btnSpeaker.label = " Speacker OFF Audio STEREO ";
@@ -100,21 +94,6 @@ void MenuAudio()
         }
         drawButton(btnSpeaker, TFT_RED, TFT_WHITE);
         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         //  indietro ritorna a orologio
         drawButton(btnIndietro, TFT_RED, TFT_WHITE);  //
 
@@ -159,22 +138,13 @@ void MenuAudio()
                 currentState = STATE_ASCOLTA_SEQUENZIALE;
                 break;
             }
-            /*
+
              if (isTouched(btnAscoltoNumeroBrani, t.x, t.y))
             {
                 Inizializza = false;
                 currentState = STATE_ASCOLTA_NUMERO_BRANI;
                 break;
             }
-
-            if (isTouched(btnMenuWebRadio, t.x, t.y))
-            {
-                Inizializza = false;
-                currentState = STATE_MENU_WEBRADIO;
-                break;
-            }
-
-            */
             
             if (isTouched(btnAggiornaCanzoni, t.x, t.y))
             {
@@ -225,6 +195,14 @@ void MenuAudio()
                 currentState = STATE_SPEAKER;
                 break;
             }
+            /*
+            if (isTouched(btnMenuWebRadio, t.x, t.y))
+            {
+                Inizializza = false;
+                currentState = STATE_MENU_WEBRADIO;
+                break;
+            }
+            */
 
             // pulsante ultimo ritorna a orologio
             if (isTouched(btnIndietro, t.x, t.y))

@@ -15,6 +15,12 @@ Use it freely at your own risk.
 
 ## 🔄 Changelog – Latest Updates
 
+30/04/26
+
+Added the ability to choose the number of songs .mp3 to listen to (from 0 to 9) in the Audio Menu.
+
+Fixed some minor bugs.
+
 24/04/26
 
 Added in the Audio Menu a button to control the Speaker:  
@@ -23,9 +29,6 @@ This is because the TAB5 has only one built‑in speaker.
 If the speaker is OFF, the headphone audio will be stereo.
 
 22/04/26
-Changed the font that caused a compilation error.
-
-Fixed a timing bug in the screen‑off function.
 
 The firmware folder now includes a pre‑compiled firmware.bin ready to be loaded using a launcher.
 
@@ -113,6 +116,12 @@ Usatelo liberamente a vostro rischio.
 
 ## 🔄 Registro Modifiche – Ultimi Aggiornamenti
 
+30/04/26
+
+Aggiunto  nel Menu Audio la possibilita' di scegliere quante canzoni .mp3 ascoltare (da 0 a 9.)
+
+Corretti alcuni errori di minore importanza.
+
 24/04/26
 
 È stato aggiunto al menu Audio un pulsante per controllare l'altoparlante:
@@ -122,9 +131,6 @@ Se l'altoparlante è spento, l'audio in cuffia sarà stereo.
 
 
 22/04/26
-Cambiato il font che causava un errore di compilazione.
-
-Corretto un errore di temporizzazione nello spegnimento dello schermo.
 
 La cartella firmware ora contiene il firmware.bin già compilato, pronto per essere caricato tramite un launcher.
 
@@ -198,5 +204,5 @@ Licenza: **MIT**, salvo diversa indicazione nei componenti di terze parti.
 
 ---
 
-### 📅 Updated: 26‑04‑2026  
+### 📅 Updated: 30‑04‑2026  
 **Author: Ivano Panetti**

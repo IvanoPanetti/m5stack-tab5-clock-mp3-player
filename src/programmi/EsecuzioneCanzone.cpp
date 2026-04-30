@@ -18,6 +18,7 @@ bool g_streamErrorPending = false;
 void playWebRadio(const char* url, bool isAAC=true);
 void StreamStatusCallback(void *cbData, int code, const char *string);
 
+
 // Flag globale per bloccare loop/callback durante lo stop
 volatile bool g_stopping = false;
 
@@ -196,8 +197,33 @@ void StreamStatusCallback(void *cbData, int code, const char *string) {
 
   tft.setColor(TFT_BLACK);
   tft.fillRect(0,1000,720,100);
-  tft.setCursor(0, 1000);
+  tft.setCursor(0, 700);
   tft.printf("Stream status %d: %s\n", code, string);
+
+  //--------------------------------------------------------------- grave interruzione del flusso STOP RADIO  forse da eliminare
+  // Con errori 3 e 6 del codec viene arrestato  il player
+  if (code == 3 || code == 6)
+{
+    tft.println("Stream interruption: scheduling stop");
+
+    g_streamErrorPending = true;
+    g_lastStreamError = millis();
+    //Riaccendo lo schermo se e' spento
+    previousMillis = millis()+interval;
+    previousMillis1 = millis()+interval1;
+    IntensitaLuce = 3;
+    tft.setBrightness(DisplayAcceso);
+
+    // Segnala allo stato principale
+    //StopRadio = 2;
+    PlayOn = false;
+    StopPlayback();
+
+    return;
+}
+
+
+  //---------------------------------------------------------------
 
   if (code == 0)
   { 
@@ -216,6 +242,14 @@ void StreamStatusCallback(void *cbData, int code, const char *string) {
 // Loop playback con timeout e riconnessione fuori dal callback
 void loopPlayback()
 {
+  //----------------------------------
+  if (g_streamErrorPending)
+  {
+    g_streamErrorPending = false;
+    StopPlayback();
+    return;
+  }
+  //-----------------------------------
   if (g_stopping) return;
 
   bool gotData = false;
