@@ -15,11 +15,17 @@ Use it freely at your own risk.
 
 ## 🔄 Changelog – Latest Updates
 
+04/05/26
+
+Added a new item to the main menu to allow listening to web radio in .mp3 and .acc formats.
+
+Fixed some minor bugs
+
+
 30/04/26
 
 Added the ability to choose the number of songs .mp3 to listen to (from 0 to 9) in the Audio Menu.
 
-Fixed some minor bugs.
 
 24/04/26
 
@@ -27,6 +33,7 @@ Added in the Audio Menu a button to control the Speaker:
 If the speaker is ON, the audio will be monophonic. The sound will still be available through the headphones.
 This is because the TAB5 has only one built‑in speaker.
 If the speaker is OFF, the headphone audio will be stereo.
+
 
 22/04/26
 
@@ -85,6 +92,25 @@ Whenever you add or remove songs, run **Update Song List** from the menu.
 
 ---
 
+## 🎵 **Menu WebRadio**
+
+- Web radio URLs must be entered in the SD card's Settings.txt file and have this format:
+
+  WebradioName = WebRadio Name, the name of the web radio that will be displayed on the screen when selected.
+
+  WebradioURL  = WebRadio URL,      the URL of the web radio.
+                                    WARNING! The audio library does not support https format. If your link
+                                    supports it, remove the "s." Many radio stations also broadcast in http format:
+                                    for example, transform the link
+                                    https://stream.lolliradio.net/lolli_italia.mp3
+                                    into
+                                    http://stream.lolliradio.net/lolli_italia.mp3
+
+WebradioCodec = audio format:       0 if the radio broadcasts with the .mp3 codec
+                                    1 if the radio broadcasts with the .aac codec
+
+---
+
 ## ⚠️ **Disclaimer**
 This project was created for fun.  
 I am not a programmer.  
@@ -97,7 +123,6 @@ License: **MIT**, unless otherwise specified by third‑party components.
 ---
 
 ## 🛠️ **Planned Features** 
-- Web radio player (.mp3 / .aac codecs)  
   
 
 ---
@@ -116,11 +141,18 @@ Usatelo liberamente a vostro rischio.
 
 ## 🔄 Registro Modifiche – Ultimi Aggiornamenti
 
+
+04/05/26
+
+Aggiunta una nuova voce al menu principale per consentire l'ascolto di web radio nei formati .mp3 e .acc.
+
+Correzione di alcuni errori minori
+
+
 30/04/26
 
 Aggiunto  nel Menu Audio la possibilita' di scegliere quante canzoni .mp3 ascoltare (da 0 a 9.)
 
-Corretti alcuni errori di minore importanza.
 
 24/04/26
 
@@ -188,6 +220,24 @@ Dopo aver modificato le canzoni, usare l’opzione **Aggiorna Lista Canzoni**.
 
 ---
 
+## 🎵 **Menu WebRadio**
+
+- Gli URL delle Webradio vanno inseriti del file Setting.txt della SD e hanno questo formato:
+
+  Nomewebradio = Nome WebRadio      nome della webradio che sara' visualizzato sul display quando selezionata.
+
+  URLwebradio  = URL webradio       URL della webradio.  ATTENZIONE! La Libreria audio non supporta il formato https
+                                    se il tuo link lo prevede, elimina la s molte radio trasmettono anche nel formato http:
+                                    ad esempio trasforma il link
+                                    https://stream.lolliradio.net/lolli_italia.mp3
+                                    in
+                                    http://stream.lolliradio.net/lolli_italia.mp3
+
+  Codecwebradio2 = formato audio    0 se la radio trasmette con codec mp3
+                                    1 se la radio trasmette con codec acc
+
+---
+
 ## ⚠️ **Avvertenze**
 Questo progetto è stato creato per gioco.  
 Non sono un programmatore.  
@@ -200,9 +250,9 @@ Licenza: **MIT**, salvo diversa indicazione nei componenti di terze parti.
 ---
 
 ## 🛠️ **Prossimi Sviluppi**
-- Player WebRadio (.mp3 / .aac)    
+
 
 ---
 
-### 📅 Updated: 30‑04‑2026  
+### 📅 Updated: 04‑05‑2026  
 **Author: Ivano Panetti**

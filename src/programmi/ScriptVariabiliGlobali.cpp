@@ -260,24 +260,6 @@ void readINA226()
   // scrivo la tensione letta
   tft.setCursor(0, barY );
   tft.printf("V: %.2f  ", voltage);
-  // se la batteria e' bassa  ferma il dispositivo
-
-  if (BatteriaPresente == 1)
-  {
-    if (voltage < Vmin) 
-      { 
-        tft.clear();
-        tft.setTextSize(2);
-        tft.setCursor(10,100);
-        //tft.print("LIVELLO BATTERIA BASSO");
-        tft.print("LOW BATTERY LEVEL");
-        tft.setCursor(10,300);
-        //tft.print ("A R R E S T O ");
-        tft.print ("A R R E S T ");
-        delay(4000);
-        M5.Power.powerOff();
-      }
-    }
   
   // corrente
   float current = M5.Power.getBatteryCurrent() / 1000.0f; // converti da mA a A
@@ -292,6 +274,28 @@ void readINA226()
   uint16_t barC_Color = (current < 0)
     ? TFT_RED     // ricarica
     : TFT_BLUE;   // consumo
+
+  //---------------------------------------------------------------------
+
+  // se la batteria e' bassa  ferma il dispositivo
+  if (BatteriaPresente == 1)
+  {
+    if (voltage < Vmin && barC_Color == 31) // se la tensione e' sotto il minimo e la barra e' blu  (non in ricarica) il tab si spegne
+    {
+      tft.clear();
+      tft.setTextSize(2);
+      tft.setCursor(10,100);
+      //tft.print("LIVELLO BATTERIA BASSO");
+      tft.print("LOW BATTERY LEVEL");
+      tft.setCursor(10,300);
+      //tft.print ("A R R E S T O ");
+      tft.print ("A R R E S T ");
+      delay(4000);
+      M5.Power.powerOff();
+    }
+  }
+
+  //----------------------------------------------------------------------
 
   // 3) "Pulisco" lo sfondo (nero) e disegno la barra colore appropriato
   tft.fillRect(barC_X, barC_Y,

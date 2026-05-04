@@ -26,7 +26,7 @@ static Button btnAggiornaCanzoni =    { 20,660,680,80, " Update Song List "};
 static Button btnImpostaSveglia =     { 20,760,680,80, " Set The Alarm "};
 //static Button btnEliminaSveglia =     { 20,860,680,80, " Elimina Sveglia "};
 static Button btnEliminaSveglia =     { 20,860,680,80, " Delete Alarm "};
-//-------------------------------------static Button btnMenuWebRadio =       { 20, 960, 680, 80, " Menu WebRadio "};
+static Button btnMenuWebRadio =       { 20, 960, 680, 80, " Menu WebRadio "};
 static Button btnSpeaker =            { 20, 1060, 680, 80, " "};
 static Button btnIndietro =           { 20, 1160, 680, 80, " <---<< "}; // non usato per ora
 
@@ -77,7 +77,7 @@ void MenuAudio()
         drawButton(btnEliminaSveglia, TFT_RED, TFT_WHITE);
 
         //  Pulsante Menu Web Radio
-        //----------------------------------------------------drawButton(btnMenuWebRadio, TFT_RED, TFT_WHITE);
+        drawButton(btnMenuWebRadio, TFT_RED, TFT_WHITE);
         
         //  Pulsante Speaker ON/OFF
         //  drawButton(btnSpeaker, TFT_GREEN, TFT_WHITE);
@@ -145,6 +145,13 @@ void MenuAudio()
                 currentState = STATE_ASCOLTA_NUMERO_BRANI;
                 break;
             }
+
+            if (isTouched(btnMenuWebRadio, t.x, t.y))
+            {
+                Inizializza = false;
+                currentState = STATE_MENU_WEBRADIO;
+                break;
+            }
             
             if (isTouched(btnAggiornaCanzoni, t.x, t.y))
             {
@@ -195,14 +202,13 @@ void MenuAudio()
                 currentState = STATE_SPEAKER;
                 break;
             }
-            /*
+
             if (isTouched(btnMenuWebRadio, t.x, t.y))
             {
                 Inizializza = false;
                 currentState = STATE_MENU_WEBRADIO;
                 break;
             }
-            */
 
             // pulsante ultimo ritorna a orologio
             if (isTouched(btnIndietro, t.x, t.y))

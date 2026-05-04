@@ -14,7 +14,7 @@
 #include "programmi/AscoltaNumeroBrani.h"
 #include "programmi/AscoltaSequenziale.h"
 #include "programmi/ImpostaSveglia.h"
-//#include "programmi/MenuWebRadio.h"
+#include "programmi/MenuWebRadio.h"
 #include "programmi/Speaker.h"
 
 ///////////////////////////////////  i TEST QUI
@@ -244,7 +244,9 @@ void loop()
     case STATE_ELIMINA_SVEGLIA:
       EliminaSveglia();
       break;
-
+    case STATE_MENU_WEBRADIO:
+      MenuWebRadio();
+      break;
     case STATE_SPEAKER:
       Speaker();
       break;
