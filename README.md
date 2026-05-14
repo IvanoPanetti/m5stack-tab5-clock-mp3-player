@@ -10,10 +10,18 @@
 This project turns the **M5Stack Tab5** into a combined **analog clock** and **MP3 music player**.  
 It was created for fun, with the help of AI, and may contain bugs.  
 Use it freely at your own risk.
+Please note that in the event of an unexpected reboot, the audio may stop working.
+If this happens, you need to completely turn off the tab by double-pressing the physical button at the bottom.
+Wait 5 seconds, then press it again to turn the tab back on.
+This will reset the ES8388 audio codec.
 
 ---
 
 ## 🔄 Changelog – Latest Updates
+
+14/05/26
+
+Fixed some errors in WebRadio execution
 
 04/05/26
 
@@ -136,10 +144,18 @@ License: **MIT**, unless otherwise specified by third‑party components.
 Questo progetto trasforma l’**M5Stack Tab5** in un **orologio analogico** e **lettore MP3**.  
 È stato creato per divertimento, con il supporto dell’AI, e può contenere bug.  
 Usatelo liberamente a vostro rischio.
+Si prega di notare che in caso di riavvio imprevisto, l'audio potrebbe smettere di funzionare.
+In tal caso, è necessario spegnere completamente il tablet premendo due volte il pulsante fisico in basso.
+Attendere 5 secondi, quindi premerlo di nuovo per riaccendere il tablet.
+Questa operazione ripristinerà il codec audio ES8388.
 
 ---
 
 ## 🔄 Registro Modifiche – Ultimi Aggiornamenti
+
+14/05/26
+
+Correzione di alcuni errori nell'esecuzione della WebRadio
 
 
 04/05/26
@@ -254,5 +270,5 @@ Licenza: **MIT**, salvo diversa indicazione nei componenti di terze parti.
 
 ---
 
-### 📅 Updated: 04‑05‑2026  
+### 📅 Updated: 14‑05‑2026  
 **Author: Ivano Panetti**

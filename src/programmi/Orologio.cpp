@@ -2,8 +2,9 @@
 #include <M5Unified.h>
 #include "Orologio.h"
 #include "AscoltaSequenziale.h"
-//#include "Speaker.h"
 #include "ScriptVariabiliGlobali.h"
+
+#include "DisplayMutex.h"
 
 // Librerie per SD_MMC
 //#include "FS.h"       //libraries for the sd card
@@ -78,34 +79,39 @@ void Quadrante ()
 
 void Sveglia()
 {
-if (SvegliaOn == true)
+  if (SvegliaOn == true)
   {
+    DISPLAY_LOCK();
     tft.setCursor(400,350);
-    tft.setTextColor(RED,TFT_BLACK);
-    //tft.print ("Sveglia  ");
-    tft.print ("Alarm    ");
-    if (SvegliaOre < 10)  tft.print("0");
-    tft.print(SvegliaOre) ;
+    tft.setTextColor(RED, TFT_BLACK);
+    tft.print("Alarm    ");
+    if (SvegliaOre < 10)   tft.print("0");
+    tft.print(SvegliaOre);
     tft.print(":");
-    if (SvegliaMinuti < 10)  tft.print("0");
-    tft.print(SvegliaMinuti) ;
-    tft.setTextColor(TFT_WHITE,TFT_BLACK);
+    if (SvegliaMinuti < 10) tft.print("0");
+    tft.print(SvegliaMinuti);
+    tft.setTextColor(TFT_WHITE, TFT_BLACK);
+    DISPLAY_UNLOCK();   // ← UNLOCK prima di operazioni lunghe
+
     if (SvegliaOre == hh24 && SvegliaMinuti == mm)
     {
-      SD.remove  ("/Sveglia.txt"); // Rimuovo il file sd orario Sveglia
-      IntensitaLuce=3;
-      Inizializza = false; // serve per fare comparire il pulsante menu in orologio
+      SD.remove("/Sveglia.txt");
+      IntensitaLuce = 3;
+      Inizializza   = false;
+      DISPLAY_LOCK();
       tft.setBrightness(DisplayAcceso);
-      Volume = 200;  // Volume Sveglia
-      SvegliaOn=false;
+      DISPLAY_UNLOCK();
+      Volume            = 200;
+      SvegliaOn         = false;
       DecrementoCanzone = 2;
-      AscoltaSequenziale();
+      AscoltaSequenziale();  // ← mai dentro un lock: è lunga
     }
   }
 }
 
 void TimerDisplay()
 {
+  DISPLAY_LOCK();
   //visualizza Stato  Timer Display
   tft.setFont(&fonts::Font4); //setto il font piccolo
   tft.setCursor(622,124);
@@ -121,84 +127,72 @@ void TimerDisplay()
   }
   tft.setTextColor(TFT_WHITE,TFT_BLACK);
   tft.setFont(&fonts::FreeSans24pt7b); //ripristino il font grande
+  DISPLAY_UNLOCK();
 }
 
 void Lancette()
 {
-  /// stampo l'orario numerico
-  tft.setTextColor(CYAN, TFT_BLACK);
-  tft.setCursor (400,150);
-  if (hh24<10)
-  {
-    tft.print("0");
-    tft.print(hh24);
-  }
-  else tft.print(hh24);
-  tft.print(":");
-  if (mm<10)
-  {
-    tft.print("0");
-    tft.print(mm);
-  }
-  else tft.print(mm);
-  tft.print(":");
-  if (ss<10)
-  {
-    tft.print("0");
-    tft.print(ss);
-  }
-  else tft.print(ss);
-  tft.setTextColor(WHITE, TFT_BLACK);
-  tft.setTextSize(1) ;
-  tft.setCursor (400,220);
-  tft.print(giorno);
-  tft.print(" - ");
-  tft.print(mese);
-  tft.print(" - ");
-  tft.print(anno);
-  tft.print("   ");
-  tft.setCursor (400,290);
-  tft.print(GiornoSettimanaParole [GiornoSettimana ]);
-  tft.setFont(&fonts::Font4); //setto il font piccolo
-  tft.setCursor(0,70);
-  tft.print ("L ");
-  tft.print(IntensitaLuce);
-  tft.print ("   SSID:");
-  tft.print (ssid);
-  tft.print ("   Audio:");
-  tft.print ( CartellaSelezionata);
-  tft.setFont(&fonts::FreeSans24pt7b); //ripristino il font grande
+  // Tutto il blocco display in un unico lock
+  DISPLAY_LOCK();
 
-  // Pre-compute hand degrees, x & y coords for a fast screen update
-  sdeg = ss*6;                  // 0-59 -> 0-354
-  mdeg = mm*6+sdeg*0.01666667;  // 0-59 -> 0-360 - includes seconds
-  hdeg = hh*30+mdeg*0.0833333;  // 0-11 -> 0-360 - includes minutes and seconds
-  hx = cos((hdeg-90)*0.0174532925);    
-  hy = sin((hdeg-90)*0.0174532925);
-  mx = cos((mdeg-90)*0.0174532925);    
-  my = sin((mdeg-90)*0.0174532925);
-  sx = cos((sdeg-90)*0.0174532925);    
-  sy = sin((sdeg-90)*0.0174532925);
-  if (ss==0 || initial==1)
+  tft.setTextColor(CYAN, TFT_BLACK);
+  tft.setCursor(400, 150);
+  if (hh24 < 10) { tft.print("0"); tft.print(hh24); }
+  else             tft.print(hh24);
+  tft.print(":");
+  if (mm < 10) { tft.print("0"); tft.print(mm); }
+  else           tft.print(mm);
+  tft.print(":");
+  if (ss < 10) { tft.print("0"); tft.print(ss); }
+  else           tft.print(ss);
+
+  tft.setTextColor(WHITE, TFT_BLACK);
+  tft.setTextSize(1);
+  tft.setCursor(400, 220);
+  tft.print(giorno); tft.print(" - ");
+  tft.print(mese);   tft.print(" - ");
+  tft.print(anno);   tft.print("   ");
+  tft.setCursor(400, 290);
+  tft.print(GiornoSettimanaParole[GiornoSettimana]);
+
+  tft.setFont(&fonts::Font4);
+  tft.setCursor(0, 70);
+  tft.print("L ");       tft.print(IntensitaLuce);
+  tft.print("   SSID:"); tft.print(ssid);
+  tft.print("   Audio:"); tft.print(CartellaSelezionata);
+  tft.setFont(&fonts::FreeSans24pt7b);
+
+  // Calcoli lancette (solo matematica, niente display)
+  sdeg = ss * 6;
+  mdeg = mm * 6 + sdeg * 0.01666667f;
+  hdeg = hh * 30 + mdeg * 0.0833333f;
+  hx = cos((hdeg - 90) * 0.0174532925f);
+  hy = sin((hdeg - 90) * 0.0174532925f);
+  mx = cos((mdeg - 90) * 0.0174532925f);
+  my = sin((mdeg - 90) * 0.0174532925f);
+  sx = cos((sdeg - 90) * 0.0174532925f);
+  sy = sin((sdeg - 90) * 0.0174532925f);
+
+  if (ss == 0 || initial == 1)
   {
     initial = 0;
-    // Erase hour and minute hand positions every minute
     tft.drawLine(ohx, ohy, AnalogPosX, AnalogPosY, TFT_BLACK);
-    ohx = hx*72+AnalogPosX;    
-    ohy = hy*72+AnalogPosY;
+    ohx = hx * 72 + AnalogPosX;
+    ohy = hy * 72 + AnalogPosY;
     tft.drawLine(omx, omy, AnalogPosX, AnalogPosY, TFT_BLACK);
-    omx = mx*94+AnalogPosX;    
-    omy = my*94+AnalogPosY;
+    omx = mx * 94 + AnalogPosX;
+    omy = my * 94 + AnalogPosY;
   }
 
-  // Redraw new hand positions, hour and minute hands not erased here to avoid flicker
   tft.drawLine(osx, osy, AnalogPosX, AnalogPosY, TFT_BLACK);
-  osx = sx*95+AnalogPosX;    
-  osy = sy*95+AnalogPosY;
+  osx = sx * 95 + AnalogPosX;
+  osy = sy * 95 + AnalogPosY;
   tft.drawLine(ohx, ohy, AnalogPosX, AnalogPosY, TFT_WHITE);
   tft.drawLine(omx, omy, AnalogPosX, AnalogPosY, TFT_WHITE);
   tft.drawLine(osx, osy, AnalogPosX, AnalogPosY, TFT_RED);
   tft.fillCircle(AnalogPosX, AnalogPosY, 3, TFT_RED);
+
+  DISPLAY_UNLOCK();   // ← unico unlock, alla fine di tutto
 }
 
 void Orologio()
@@ -246,11 +240,14 @@ void Orologio()
         tft.clear();
         currentState = STATE_MENU_PRINCIPALE;
       }
+
       // pulsante invisibile aumenta luminosita'
-      if (isTouched(btnLuminosita3, t.x, t.y) && IntensitaLuce != 3)
+      if (isTouched(btnLuminosita3, t.x, t.y))
       {
         IntensitaLuce = 3;
         tft.setBrightness(DisplayAcceso);
+        previousMillis  = millis() + interval;
+        previousMillis1 = millis() + interval1;
         Inizializza = false;
         return;
       }
@@ -259,14 +256,14 @@ void Orologio()
 
   currentMillis = millis();
   // se a intensita' massima scade il tempo diminuisca a intensita' media
-  if (previousMillis - currentMillis >= interval && IntensitaLuce ==3)
+  if (currentMillis >= previousMillis && IntensitaLuce == 3)
   {
-    ledcWrite(22, 1);
     IntensitaLuce=2;
+    tft.setBrightness(DisplayMedio);
   }
   
   // se a intensita' media scade il tempo diminuisca a intensita' minima qui dovrebbe entrere il deepsleep
-  if (previousMillis1 - currentMillis >= interval1 && IntensitaLuce ==2 )
+  if (currentMillis >= previousMillis1 && IntensitaLuce == 2 )
   {
     IntensitaLuce=1;
     tft.setBrightness(DisplaySpento);

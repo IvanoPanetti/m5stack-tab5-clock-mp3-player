@@ -27,8 +27,8 @@ void WifiOn()
     delay (500);
     //M5.Display.clearDisplay(); 
     M5.Display.setCursor(10, 120);
-    //M5.Display.print("Accendo il WiFi...");
-    M5.Display.print("I turn on the WiFi...");
+    //M5.Display.print("Accendo il WiFi.");
+    M5.Display.print("I turn on the WiFi.");
     delay(500);
 
     WiFi.mode(WIFI_STA);          // modalità stazione
@@ -36,7 +36,7 @@ void WifiOn()
 
     // attesa connessione
     int tentativi = 0;
-    while (WiFi.status() != WL_CONNECTED && tentativi < 20) {
+    while (WiFi.status() != WL_CONNECTED && tentativi < 30) {
         delay(500);
         M5.Display.print(".");
         tentativi++;
@@ -55,5 +55,6 @@ void WifiOn()
         M5.Display.println("\nConnection Failed");
         WifiOff();
         delay (4000);
+        currentState = STATE_OROLOGIO;
     }
 }

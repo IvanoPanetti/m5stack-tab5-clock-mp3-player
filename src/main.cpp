@@ -54,6 +54,7 @@ State currentState = STATE_OROLOGIO;  // definizione dello stato iniziale
 void setup()
 {
   Serial.begin(115200);
+  initDisplayMutex();   // ← prima di tutto, subito dopo Serial.begin
   auto cfg = M5.config();
   auto spk_cfg = M5.Speaker.config();
   spk_cfg.stereo = false;
@@ -108,16 +109,17 @@ void setup()
     //tft.printf("Memoria libera:  %llu MB\n", free);
     tft.printf("Free memory:  %llu MB\n", free);
   }
-  if (loadSettings("/Setting.txt")) {
-        tft.println("");
-        //tft.println("Impostazioni caricate OK.");
-        tft.println("Settings loaded OK.");
-        delay(2000);
-        ssid=ssid1;
-        password=password1;
-        if (SchermoSempreAcceso == 1) DisplaySpento = 1; // Se SchermoSempreAcceso e' 1  lo schermo non si spegne mai
-        if (SchermoSempreAcceso == 0) DisplaySpento = 0; // Se SchermoSempreAcceso e' 1  lo schermo non si spegne mai
-      }
+  if (loadSettings("/Setting.txt"))
+  {
+    tft.println("");
+    //tft.println("Impostazioni caricate OK.");
+    tft.println("Settings loaded OK.");
+    delay(2000);
+    ssid=ssid1;
+    password=password1;
+    if (SchermoSempreAcceso == 1) DisplaySpento = 1; // Se SchermoSempreAcceso e' 1  lo schermo non si spegne mai
+    if (SchermoSempreAcceso == 0) DisplaySpento = 0; // Se SchermoSempreAcceso e' 1  lo schermo non si spegne mai
+  }
   
   // Modalita' SDMMC 1 bit  Ma non funziona 
   /*
@@ -187,11 +189,11 @@ void setup()
     File file = SD.open("/Sveglia.txt", FILE_READ);
     if (!file)
     {
-        //tft.println("Impossibile aprire Sveglia.txt");
-        tft.println("impossible to open Sveglia.txt");
-        delay(2000);
-        SvegliaOn = false;
-        return;
+      //tft.println("Impossibile aprire Sveglia.txt");
+      tft.println("impossible to open Sveglia.txt");
+      delay(2000);
+      SvegliaOn = false;
+      return;
     }
 
     // Legge ore e minuti

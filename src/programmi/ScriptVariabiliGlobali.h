@@ -169,3 +169,4 @@ void drawButton(const Button& b, uint16_t colorFill, uint16_t colorBorder);
 // Funzioni comuni
 void readRTC();
 void readINA226();
+void initDisplayMutex();

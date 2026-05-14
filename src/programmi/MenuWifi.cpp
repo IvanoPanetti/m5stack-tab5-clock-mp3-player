@@ -8,7 +8,6 @@
     #include "SincronizzaOraManuale.h"
     #include "SincronizzaOra.h"
     
-    
     static Button btnWifissid1 = { 20, 160, 680, 80, "" };
     static Button btnWifissid2 = { 20, 260, 680, 80, ""};
     static Button btnWifissid3 = { 20, 360, 680, 80, ""};

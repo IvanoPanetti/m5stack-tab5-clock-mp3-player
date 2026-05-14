@@ -1,6 +1,10 @@
 #include <M5Unified.h>
 #include <time.h>
 #include "ScriptVariabiliGlobali.h"
+#include "DisplayMutex.h"
+
+// Definizione del mutex globale display/speaker
+SemaphoreHandle_t g_displayMutex = nullptr;
  
 // Variabili Globali
 
@@ -143,8 +147,8 @@ void drawButton(const Button& b, uint16_t colorFill, uint16_t colorBorder)
 //  usato per disattivazione Altoparlante
 void StatoSpeaker()
 {
-  //visualizza Stato  Speaker
-  tft.setFont(&fonts::Font4); //setto il font piccolo
+  DISPLAY_LOCK();
+  tft.setFont(&fonts::Font4);
   tft.setCursor(620,70);
   if(SpeakerON == true)
   {
@@ -163,30 +167,35 @@ void StatoSpeaker()
     tft.print(" STEREO ");
   }
   tft.setTextColor(TFT_WHITE,TFT_BLACK);
-  tft.setFont(&fonts::FreeSans24pt7b); //ripristino il font grande
+  tft.setFont(&fonts::FreeSans24pt7b);
+  DISPLAY_UNLOCK();
 }
 
 void VolumeSu()
 {
   Volume = Volume + 10;
-  if (Volume > 250 ) Volume = 250;
-  M5.Speaker.setVolume(Volume);       // volume globale
-  tft.setCursor (0,1150);
-  tft.print (" Volume: ");
+  if (Volume > 250) Volume = 250;
+  DISPLAY_LOCK();
+  M5.Speaker.setVolume(Volume);
+  tft.setCursor(0,1150);
+  tft.print(" Volume: ");
   tft.print(Volume / 10);
-  tft.print ("  ");
+  tft.print("  ");
+  DISPLAY_UNLOCK();
 }
 
 void VolumeGiu()
 {
   Volume = Volume - 10;
-  if (Volume < 10 ) Volume = 10;
-  M5.Speaker.setVolume(Volume);       // volume globale
-  tft.setCursor (0,1150);
-  tft.print ("Volume: ");
+  if (Volume < 10) Volume = 10;
+  DISPLAY_LOCK();
+  M5.Speaker.setVolume(Volume);
+  tft.setCursor(0,1150);
+  tft.print("Volume: ");
   tft.print(Volume / 10);
-  tft.print ("  ");
-}
+  tft.print("  ");
+  DISPLAY_UNLOCK();
+} 
 
 // Lettura orario da RTC
 // Nota: Se l'RTC non è mai stato impostato, i valori saranno casuali o di default.
@@ -231,6 +240,7 @@ const int   barC_Y        = 40;       // qualche pixel sotto la barra tensione
 
 void readINA226()
 {
+  DISPLAY_LOCK();
   tft.setFont(&fonts::Font4); //setto il font piccolo
 
   // VOLT
@@ -315,4 +325,11 @@ void readINA226()
   tft.printf("%6.0fmA  ", current * 1000.0f);
 
   tft.setFont(&fonts::FreeSans24pt7b); //ripristino il font grande
+  DISPLAY_UNLOCK();
+}
+
+// Chiamata una sola volta da setup() prima di tutto il resto
+void initDisplayMutex()
+{
+  g_displayMutex = xSemaphoreCreateMutex();
 }

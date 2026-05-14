@@ -13,168 +13,199 @@
 #include <stdio.h>
 #include <string.h>
 #include "EsecuzioneCanzone.h"
+#include "DisplayMutex.h"
 
-static Button btnStop = {570, 1200, 150, 80, "Stop"};
-static Button btnVolumeSu = {160, 1200, 150, 80, "Vol +"};
-static Button btnVolumeGiu = {0, 1200, 150, 80, "Vol -"};
-static Button btnTempoRadio = {360, 1200, 150, 80, "Timer"};
-static Button btnLuminosita3 = {0,0,720,1280, ""};
+extern volatile bool g_stopComplete;
 
-/// Pulsanti per Webradio
+static Button btnStop        = {570, 1200, 150, 80, "Stop"};
+static Button btnVolumeSu    = {160, 1200, 150, 80, "Vol +"};
+static Button btnVolumeGiu   = {0,   1200, 150, 80, "Vol -"};
+static Button btnTempoRadio  = {360, 1200, 150, 80, "Timer"};
+static Button btnLuminosita3 = {0, 0, 720, 1280, ""};
+
+static void MostraStop(unsigned long ms = 2000)
+{
+  DISPLAY_LOCK();
+  tft.setCursor(50, 400);
+  tft.setTextColor(TFT_WHITE, TFT_RED);
+  tft.println("                  S T O P                  ");
+  tft.setTextColor(TFT_WHITE, TFT_BLACK);
+  DISPLAY_UNLOCK();
+
+  unsigned long t0 = millis();
+  while (millis() - t0 < ms)
+  {
+    M5.update();
+    delay(10);
+  }
+}
+
 void StartWebRadioInit()
 {
-  static bool Inizializza = false; // Inizializza lo setta solo al primo passaggio
+  static bool Inizializza = false;
+
   if (!Inizializza)
   {
-    StopRadio = 0; // Se ho attivato il timer tempo di ascolto radio lo spengo
-    tft.clear();  
-    WifiOn(); // accendo il wifi con la sd sospesa
+    Inizializza = true;
+    StopRadio = 0;
+    DISPLAY_LOCK();
+    tft.clear();
+    WifiOn();
+    if (WiFi.status() != WL_CONNECTED) // se non c'e'  il wifi  torno allo script principale
+    {
+      Inizializza = false;
+      currentState = STATE_OROLOGIO;
+      return;
+    }
     Sfondo();
     Quadrante();
-    // Scrive il livello del volume altrimenti non appare
-    tft.setCursor (0,1150);
-    tft.print ("Volume: ");
-    tft.print(Volume / 10);
-    tft.print ("  ");
 
-    // Disegna pulsanti
-    drawButton(btnStop, TFT_RED, TFT_WHITE);
-    drawButton(btnVolumeSu, TFT_RED, TFT_WHITE);
-    drawButton(btnVolumeGiu, TFT_RED, TFT_WHITE);
+    tft.setCursor(0, 1150);
+    tft.print("Volume: ");
+    tft.print(Volume / 10);
+    tft.print("  ");
+    
+    drawButton(btnStop,       TFT_RED,   TFT_WHITE);
+    drawButton(btnVolumeSu,   TFT_RED,   TFT_WHITE);
+    drawButton(btnVolumeGiu,  TFT_RED,   TFT_WHITE);
     drawButton(btnTempoRadio, TFT_WHITE, TFT_BLACK);
 
-    //drawButton(btnLuminosita3,TFT_BLUE,TFT_WHITE);  //  commentata perche' pulsante trasparente
-    tft.setCursor (50,400);
-    tft.setTextColor(TFT_BLUE,TFT_CYAN);
-    tft.println (nomeStazione);
-    tft.setTextColor(TFT_WHITE,TFT_BLACK);
-    Inizializza = true;
-    previousMillis = millis()+interval; 
-    previousMillis1 = millis()+interval1;
+    tft.setCursor(50, 400);
+    tft.setTextColor(TFT_BLUE, TFT_CYAN);
+    tft.println(nomeStazione);
+    tft.setTextColor(TFT_WHITE, TFT_BLACK);
+    DISPLAY_UNLOCK();
+
+    // ── Timer dimmer: salva il momento attuale come riferimento ──
+    previousMillis  = millis() + interval;
+    previousMillis1 = millis() + interval1;
+
     playRadio();
+
+    // ── Resetta di nuovo dopo la connessione (può durare ~8s) ──
+    previousMillis  = millis() + interval;
+    previousMillis1 = millis() + interval1;
+    IntensitaLuce   = 3;
+    DISPLAY_LOCK();
+    tft.setBrightness(DisplayAcceso);
+    DISPLAY_UNLOCK();
   }
 
   PlayOn = true;
 
   while (true)
   {
-    M5.update();  // sempre nel loop per aggiornare touch e display
+    M5.update();
     auto t = M5.Touch.getDetail();
     loopPlayback();
     currentMillis = millis();
-    // se a intensita' massima scade il tempo diminuisca a intensita' spento
-    if (previousMillis - currentMillis >= interval && IntensitaLuce == 3)
+
+    // ── Dimmer display ────────────────────────────────────────
+    // Primo stadio: dopo 'interval' ms senza tocco → spegni
+    if (currentMillis >= previousMillis && IntensitaLuce == 3)
     {
-      IntensitaLuce=1;
+      IntensitaLuce = 1;
+      DISPLAY_LOCK();
       tft.setBrightness(DisplaySpento);
+      DISPLAY_UNLOCK();
     }
-    // 🔹 Esegui letture rtc e ina solo se è passato almeno 1 secondo
+
+    // Letture sensori ogni secondo
     unsigned long now = millis();
-    if (now - lastSensorUpdate >= 1000) // 1000 ms = 1 secondo
+    if (now - lastSensorUpdate >= 1000)
     {
       readRTC();
       readINA226();
-      Lancette(); // aggiorna orario
+      Lancette();
       StatoSpeaker();
       TimerDisplay();
       lastSensorUpdate = now;
+
       if (StopRadio != 0)
       {
-        if(StopRadio == 1) 
+        if (StopRadio == 1)
         {
           WifiOff();
-          tft.setCursor (50,400);
-          tft.setTextColor(TFT_WHITE,TFT_RED);
-          tft.println ("                  S T O P                  ");
-          tft.setTextColor(TFT_WHITE,TFT_BLACK);
-          delay(2000);
-          Inizializza = false;
+          MostraStop(2000);
+          Inizializza  = false;
           currentState = STATE_OROLOGIO;
-          break; // esci dal loop
+          break;
         }
-        StopRadio = StopRadio -1;
-        tft.setCursor (330,1150);
+        StopRadio--;
+        DISPLAY_LOCK();
+        tft.setCursor(330, 1150);
         tft.print(" ");
-        tft.print (StopRadio);
-        tft.print (":  ");
-        tft.setCursor (480,1150);
-        tft.print (int(StopRadio/60));
-        tft.print (" ");
+        tft.print(StopRadio);
+        tft.print(":  ");
+        tft.setCursor(480, 1150);
+        tft.print(int(StopRadio / 60));
+        tft.print(" ");
+        DISPLAY_UNLOCK();
       }
     }
 
-    //------------------------------------------------------------
-    // se il flusso audio si  e' interrotto
-                    if (PlayOn == false)
-                    {
-                        WifiOff();
-                        tft.setCursor (50,400);
-                        tft.setTextColor(TFT_WHITE,TFT_RED);
-                        tft.println ("                  S T O P                  ");
-                        tft.setTextColor(TFT_WHITE,TFT_BLACK);
-                        delay(2000);
-                        Inizializza = false;
-                        currentState = STATE_OROLOGIO;
-                        break; // esci dal loop
-                    }
-    //----------------------------------------------------------
-   
-    //  se ho premuto stop
+    // ── Flusso audio interrotto ───────────────────────────────
+    if (PlayOn == false)
+    {
+      unsigned long waitStart = millis();
+      while (!g_stopComplete && (millis() - waitStart < 1000))
+      {
+        loopPlayback();
+        delay(10);
+      }
+      WifiOff();
+      MostraStop(2000);
+      Inizializza  = false;
+      currentState = STATE_OROLOGIO;
+      break;
+    }
+
+    // ── Touch ────────────────────────────────────────────────
     if (t.state == m5::touch_state_t::touch_end)
     {
-      // Controllo se è stato toccato il pulsante STOP
-      if (isTouched(btnStop, t.x, t.y)&& IntensitaLuce ==3)
+      // Qualsiasi tocco: resetta il timer e riaccendi il display
+      previousMillis  = millis() + interval;
+      previousMillis1 = millis() + interval1;
+      IntensitaLuce   = 3;
+      DISPLAY_LOCK();
+      tft.setBrightness(DisplayAcceso);
+      DISPLAY_UNLOCK();
+
+      // Pulsante STOP
+      if (isTouched(btnStop, t.x, t.y))
       {
+        StopPlayback();
+        unsigned long waitStart = millis();
+        while (!g_stopComplete && (millis() - waitStart < 1000))
+        delay(10);
         WifiOff();
-        tft.setCursor (50,400);
-        tft.setTextColor(TFT_WHITE,TFT_RED);
-        tft.println ("                  S T O P                  ");
-        tft.setTextColor(TFT_WHITE,TFT_BLACK);
-        delay(2000);
-        Inizializza = false;
+        MostraStop(2000);
+        Inizializza  = false;
         currentState = STATE_OROLOGIO;
-        break; // esci dal loop
-      }
-        
-      // Volume + 
-      if (isTouched(btnVolumeSu, t.x, t.y)&& IntensitaLuce ==3)
-      {
-        VolumeSu ();
+        break;
       }
 
-      // Volume - 
-      if (isTouched(btnVolumeGiu, t.x, t.y)&& IntensitaLuce ==3)
-      {
-        VolumeGiu ();
-      }
+      // Volume +
+      if (isTouched(btnVolumeSu, t.x, t.y))
+        VolumeSu();
 
-      // TempoRadio 
-      if (isTouched(btnTempoRadio, t.x, t.y)&& IntensitaLuce ==3)
+      // Volume -
+      if (isTouched(btnVolumeGiu, t.x, t.y))
+        VolumeGiu();
+
+      // Timer ascolto radio
+      if (isTouched(btnTempoRadio, t.x, t.y))
       {
-        IntensitaLuce=3;
-        tft.setBrightness(DisplayAcceso);
-        previousMillis = millis()+interval; 
-        previousMillis1 = millis()+interval1;
-        StopRadio=StopRadio +300;
-        if(StopRadio > 2700)
+        StopRadio += 300;
+        if (StopRadio > 2700)
         {
-          StopRadio = 0 ;
-          tft.setCursor (330,1150);
-          tft.print ("                 ");
+          StopRadio = 0;
+          DISPLAY_LOCK();
+          tft.setCursor(330, 1150);
+          tft.print("                 ");
+          DISPLAY_UNLOCK();
         }
-
-      }
-
-      // setto la Luminosita' a 3 
-      if (isTouched(btnLuminosita3, t.x, t.y) && IntensitaLuce ==1)
-      {
-        IntensitaLuce=3;
-        tft.setBrightness(DisplayAcceso);
-        previousMillis = millis()+interval; 
-        previousMillis1 = millis()+interval1;
       }
     }
-
-    //delay(10); // evita loop troppo pesante
   }
 }
