@@ -125,6 +125,15 @@ void StartWebRadioInit()
       {
         if (StopRadio == 1)
         {
+          //WifiOff();
+          //MostraStop(2000);
+          //Inizializza  = false;
+          //currentState = STATE_OROLOGIO;
+          //break;
+          StopPlayback();
+          unsigned long waitStart = millis();
+          while (!g_stopComplete && (millis() - waitStart < 1000))
+          delay(10);
           WifiOff();
           MostraStop(2000);
           Inizializza  = false;

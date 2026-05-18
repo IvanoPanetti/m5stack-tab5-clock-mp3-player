@@ -19,35 +19,28 @@ This will reset the ES8388 audio codec.
 ---
 
 ## 🔄 Changelog – Latest Updates
+18/05/26
+Fixed a bug that caused the tab to restart
+when the timer expired while listening to web radio with the AAC codec.
 
 14/05/26
-
 Fixed some errors in WebRadio execution
 
 04/05/26
-
 Added a new item to the main menu to allow listening to web radio in .mp3 and .acc formats.
 
-Fixed some minor bugs
-
-
 30/04/26
-
 Added the ability to choose the number of songs .mp3 to listen to (from 0 to 9) in the Audio Menu.
 
 
 24/04/26
-
 Added in the Audio Menu a button to control the Speaker:  
 If the speaker is ON, the audio will be monophonic. The sound will still be available through the headphones.
 This is because the TAB5 has only one built‑in speaker.
 If the speaker is OFF, the headphone audio will be stereo.
 
-
 22/04/26
-
 The firmware folder now includes a pre‑compiled firmware.bin ready to be loaded using a launcher.
-
 Added in the Audio Menu the option to set an alarm clock.
 
 ---
@@ -154,36 +147,27 @@ Questa operazione ripristinerà il codec audio ES8388.
 ---
 
 ## 🔄 Registro Modifiche – Ultimi Aggiornamenti
+18/05/26
+Correzione Dell'errore che causava il riavvio del tab
+allo scadere del timer durante l'ascolto delle webradio con codec aac
 
 14/05/26
-
 Correzione di alcuni errori nell'esecuzione della WebRadio
 
-
 04/05/26
-
 Aggiunta una nuova voce al menu principale per consentire l'ascolto di web radio nei formati .mp3 e .acc.
 
-Correzione di alcuni errori minori
-
-
 30/04/26
-
 Aggiunto  nel Menu Audio la possibilita' di scegliere quante canzoni .mp3 ascoltare (da 0 a 9.)
 
-
 24/04/26
-
 È stato aggiunto al menu Audio un pulsante per controllare l'altoparlante:
 Se l'altoparlante è acceso, l'audio sarà monofonico. Il suono sarà comunque disponibile tramite le cuffie.
 Questo perché il TAB5 ha un solo altoparlante integrato.
 Se l'altoparlante è spento, l'audio in cuffia sarà stereo.
 
-
 22/04/26
-
 La cartella firmware ora contiene il firmware.bin già compilato, pronto per essere caricato tramite un launcher.
-
 Aggiunta nel Menu Audio la possibilità di impostare una sveglia.
 
 ---
@@ -272,5 +256,5 @@ Licenza: **MIT**, salvo diversa indicazione nei componenti di terze parti.
 
 ---
 
-### 📅 Updated: 14‑05‑2026  
+### 📅 Updated: 18‑05‑2026  
 **Author: Ivano Panetti**
