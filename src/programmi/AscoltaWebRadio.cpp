@@ -145,10 +145,10 @@ void StartWebRadioInit()
         tft.setCursor(330, 1150);
         tft.print(" ");
         tft.print(StopRadio);
-        tft.print(":  ");
+        tft.print(":    ");
         tft.setCursor(480, 1150);
         tft.print(int(StopRadio / 60));
-        tft.print(" ");
+        tft.print("  ");
         DISPLAY_UNLOCK();
       }
     }

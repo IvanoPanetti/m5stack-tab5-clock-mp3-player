@@ -7,6 +7,7 @@
 #include "programmi/Arresto.h"
 #include "programmi/MenuPrincipale.h"
 #include "programmi/MenuWifi.h"
+#include "programmi/Wifi.h"
 #include "programmi/SincronizzaOra.h"
 #include "programmi/SincronizzaOraManuale.h"
 #include "programmi/MenuAudio.h"
@@ -257,6 +258,9 @@ void loop()
       break;
     case STATE_MENU_WIFI:
       MenuWifi();
+      break;
+    case STATE_SCAN_WIFI:
+      WifiScan();
       break;
     case STATE_SINCRONIZZA_ORA:
       SincronizzaOra();  

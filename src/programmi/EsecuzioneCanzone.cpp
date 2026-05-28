@@ -285,7 +285,7 @@ void MetadataCallback(void *cbData, const char *type, bool isUnicode, const char
   DISPLAY_LOCK();
   tft.setBrightness(DisplayAcceso);
   tft.setColor(TFT_BLACK);
-  tft.fillRect(0, 500, 720, 100);
+  tft.fillRect(0, 500, 720, 158);
   tft.setCursor(0, 500);
   M5.Display.printf("%s", string);
   DISPLAY_UNLOCK();

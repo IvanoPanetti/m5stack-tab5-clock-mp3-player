@@ -2,3 +2,4 @@
 
 void WifiOn();
 void WifiOff();
+void WifiScan();

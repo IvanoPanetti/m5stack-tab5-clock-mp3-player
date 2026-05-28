@@ -7,9 +7,12 @@
 ## 🇬🇧 English Version
 
 ### **Overview**
-This project turns the **M5Stack Tab5** into a combined **analog clock** and **MP3 music player**.  
-It was created for fun, with the help of AI, and may contain bugs.  
-Use it freely at your own risk. 
+This project turns the **M5Stack Tab5** into an **analog clock**, **MP3 player**, and **Web radio player**.
+It was created for fun, with AI support, and may contain bugs.
+Use it freely at your own risk.
+
+The firmware folder contains the compiled firmware.bin,
+ready to be loaded via a launcher.
 
 Please note that in the event of an unexpected reboot, the audio may stop working.
 If this happens, you need to completely turn off the tab by double-pressing the physical button at the bottom.
@@ -19,12 +22,14 @@ This will reset the ES8388 audio codec.
 ---
 
 ## 🔄 Changelog – Latest Updates
+
+28/05/2026
+A simple Wi-Fi scanner has been added to the Wi-Fi menu, useful for testing
+the Wi-Fi signal received.
+
 18/05/26
 Fixed a bug that caused the tab to restart
 when the timer expired while listening to web radio with the AAC codec.
-
-14/05/26
-Fixed some errors in WebRadio execution
 
 04/05/26
 Added a new item to the main menu to allow listening to web radio in .mp3 and .acc formats.
@@ -40,7 +45,6 @@ This is because the TAB5 has only one built‑in speaker.
 If the speaker is OFF, the headphone audio will be stereo.
 
 22/04/26
-The firmware folder now includes a pre‑compiled firmware.bin ready to be loaded using a launcher.
 Added in the Audio Menu the option to set an alarm clock.
 
 ---
@@ -135,9 +139,12 @@ License: **MIT**, unless otherwise specified by third‑party components.
 ## 🇮🇹 Versione Italiana
 
 ### **Descrizione**
-Questo progetto trasforma l’**M5Stack Tab5** in un **orologio analogico** e **lettore MP3**.  
+Questo progetto trasforma l’**M5Stack Tab5** in un **orologio analogico**  un  **lettore MP3** e un **riproduttore Webradio**  
 È stato creato per divertimento, con il supporto dell’AI, e può contenere bug.  
 Usatelo liberamente a vostro rischio.
+
+La cartella firmware contiene il firmware.bin già compilato
+pronto per essere caricato tramite un launcher.
 
 Si prega di notare che in caso di riavvio imprevisto, l'audio potrebbe smettere di funzionare.
 In tal caso, è necessario spegnere completamente il tablet premendo due volte il pulsante fisico in basso.
@@ -147,12 +154,13 @@ Questa operazione ripristinerà il codec audio ES8388.
 ---
 
 ## 🔄 Registro Modifiche – Ultimi Aggiornamenti
+28/05/26
+Nel Menu wifi e' stato aggiunto un semplice wifi scanner utile per testare
+il segnale wifi ricevuto.
+
 18/05/26
 Correzione Dell'errore che causava il riavvio del tab
 allo scadere del timer durante l'ascolto delle webradio con codec aac
-
-14/05/26
-Correzione di alcuni errori nell'esecuzione della WebRadio
 
 04/05/26
 Aggiunta una nuova voce al menu principale per consentire l'ascolto di web radio nei formati .mp3 e .acc.
@@ -167,7 +175,6 @@ Questo perché il TAB5 ha un solo altoparlante integrato.
 Se l'altoparlante è spento, l'audio in cuffia sarà stereo.
 
 22/04/26
-La cartella firmware ora contiene il firmware.bin già compilato, pronto per essere caricato tramite un launcher.
 Aggiunta nel Menu Audio la possibilità di impostare una sveglia.
 
 ---
@@ -235,7 +242,7 @@ Dopo aver modificato le canzoni, usare l’opzione **Aggiorna Lista Canzoni**.
                                     in
                                     http://stream.lolliradio.net/lolli_italia.mp3
 
-  Codecwebradio2 = formato audio    0 se la radio trasmette con codec mp3
+  Codecwebradio = formato audio     0 se la radio trasmette con codec mp3
                                     1 se la radio trasmette con codec acc
 
 ---
@@ -256,5 +263,5 @@ Licenza: **MIT**, salvo diversa indicazione nei componenti di terze parti.
 
 ---
 
-### 📅 Updated: 18‑05‑2026  
+### 📅 Updated: 28‑05‑2026  
 **Author: Ivano Panetti**

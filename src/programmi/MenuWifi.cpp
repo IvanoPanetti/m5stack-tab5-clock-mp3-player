@@ -15,6 +15,7 @@
     static Button btnSincronizzaManualeOra = { 20, 860, 680, 80, " Manual Clock Synchronization"};
     //static Button btnSincronizzaOra = { 20, 960, 680, 80, " Sincronizza Orario "};
     static Button btnSincronizzaOra = { 20, 960, 680, 80, " Synchronize Time "};
+    static Button btnScanWifi = { 20, 1060, 680, 80, " Scan WiFi "};
     static Button btnIndietro = { 20, 1160, 680, 80, " <---<< "};
 
 void MenuWifi()
@@ -52,6 +53,10 @@ void MenuWifi()
 
         //  Pulsante Sincronizza Ora
         drawButton(btnSincronizzaOra, TFT_RED, TFT_WHITE);
+
+        //  Pulsante Scan Wifi
+        drawButton(btnScanWifi, TFT_RED, TFT_WHITE);
+
 
         //  Pulsante Indietro
         drawButton(btnIndietro, TFT_RED, TFT_WHITE);
@@ -127,6 +132,15 @@ void MenuWifi()
                 SincronizzaOra();
                 break;
             }
+
+            // Pulsante Scan Wifi
+            if (isTouched(btnScanWifi, t.x, t.y))
+            {
+                Inizializza = false;
+                currentState = STATE_SCAN_WIFI;
+                break;
+            }
+
             
             // pulsante Indietro
             if (isTouched(btnIndietro, t.x, t.y))
