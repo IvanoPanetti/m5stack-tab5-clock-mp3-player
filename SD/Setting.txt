@@ -11,8 +11,8 @@ Nomewebradio1 = 977 Today's Hits (USA)  ; radio station name 1
 URLwebradio1 =  http://playerservices.streamtheworld.com/api/livestream-redirect/977_HITS.mp3 ; URL station 1
 Codecwebradio1 = 0 ; 0 for radio .mp3 1 for radio .aac
 
-Nomewebradio2 = ice1 somafm ; radio station name 2
-URLwebradio2 = http://ice1.somafm.com/dronezone-32.aac ; URL station 2
+Nomewebradio2 = Radio Capodistria ; radio station name 2
+URLwebradio2 = http://mp3.rtvslo.si/capo ; URL station 2
 Codecwebradio2 = 1 ; 0 for radio .mp3 1 for radio .aac
 
 Nomewebradio3 = Nome WebRadio 3 ; radio station name 3

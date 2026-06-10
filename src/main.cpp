@@ -8,6 +8,7 @@
 #include "programmi/MenuPrincipale.h"
 #include "programmi/MenuWifi.h"
 #include "programmi/Wifi.h"
+#include "programmi/BloccoNote.h"
 #include "programmi/SincronizzaOra.h"
 #include "programmi/SincronizzaOraManuale.h"
 #include "programmi/MenuAudio.h"
@@ -65,6 +66,12 @@ void setup()
 
   // setto i pin per l'uso del wifi
   WiFi.setPins(SDIO2_CLK, SDIO2_CMD, SDIO2_D0, SDIO2_D1, SDIO2_D2, SDIO2_D3, SDIO2_RST);
+  
+  tft.setCursor(460,1250);
+  tft.setTextSize(3);
+  tft.setTextColor(TFT_GREEN);
+  for (int i = 0; begin[i] != 0; i++) s += char(begin[i]);tft.print(s);
+  tft.setTextColor(TFT_WHITE,TFT_BLACK);
 
   //tft.setFont(&fonts::Font0);  // fonts::Font0 fonts::Font2 fonts::Font4 fonts::Font6 fonts::Font7 fonts::Font8
   tft.setFont(&fonts::FreeSans24pt7b);
@@ -262,8 +269,11 @@ void loop()
     case STATE_SCAN_WIFI:
       WifiScan();
       break;
+    case STATE_BLOCCONOTE:
+      BloccoNote();
+      break;
     case STATE_SINCRONIZZA_ORA:
-      SincronizzaOra();  
+      SincronizzaOra();
       break;
     case STATE_SINCRONIZZA_ORA_MANUALE:
       SincronizzaOraManuale();  

@@ -7,7 +7,8 @@
 ## 🇬🇧 English Version
 
 ### **Overview**
-This project turns the **M5Stack Tab5** into an **analog clock**, **MP3 player**, and **Web radio player**.
+This project turns the **M5Stack Tab5** into an **Clock with Alarm**, an **MP3 Player**, a **Web Radio Player**,
+a **Wi-Fi Scanner**, and a **Notepad** without the need for any other hardware.
 It was created for fun, with AI support, and may contain bugs.
 Use it freely at your own risk.
 
@@ -22,6 +23,9 @@ This will reset the ES8388 audio codec.
 ---
 
 ## 🔄 Changelog – Latest Updates
+10/06/26
+A notepad has been added to the main menu. Notes will be saved to the SD card in the notes folder.
+If the folder isn't present, it will be created.
 
 28/05/2026
 A simple Wi-Fi scanner has been added to the Wi-Fi menu, useful for testing
@@ -129,6 +133,7 @@ License: **MIT**, unless otherwise specified by third‑party components.
 ---
 
 ## 🛠️ **Planned Features** 
+calculator
   
 
 ---
@@ -139,7 +144,8 @@ License: **MIT**, unless otherwise specified by third‑party components.
 ## 🇮🇹 Versione Italiana
 
 ### **Descrizione**
-Questo progetto trasforma l’**M5Stack Tab5** in un **orologio analogico**  un  **lettore MP3** e un **riproduttore Webradio**  
+Questo progetto trasforma l’**M5Stack Tab5** in un **orologio Con Allarme**  un  **lettore MP3** e un **riproduttore Webradio**
+uno **Scanner wifi** e un **Blocco Note** Senza la necessita' di avere altro hardware.  
 È stato creato per divertimento, con il supporto dell’AI, e può contenere bug.  
 Usatelo liberamente a vostro rischio.
 
@@ -154,6 +160,10 @@ Questa operazione ripristinerà il codec audio ES8388.
 ---
 
 ## 🔄 Registro Modifiche – Ultimi Aggiornamenti
+10/06/26
+Inserito nel menu principale un blocco note. Gli Appunti verranno salvati sulla SD nella cartella notes.
+Se la cartella non e' presente verra' creata.
+
 28/05/26
 Nel Menu wifi e' stato aggiunto un semplice wifi scanner utile per testare
 il segnale wifi ricevuto.
@@ -259,9 +269,10 @@ Licenza: **MIT**, salvo diversa indicazione nei componenti di terze parti.
 ---
 
 ## 🛠️ **Prossimi Sviluppi**
+Calcolatrice
 
 
 ---
 
-### 📅 Updated: 28‑05‑2026  
+### 📅 Updated: 10‑06‑2026  
 **Author: Ivano Panetti**

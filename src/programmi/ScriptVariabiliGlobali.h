@@ -79,6 +79,7 @@ extern bool TastoSceltaNO;
 // Tastiera per giochi
 extern bool PulsanteDestro;
 extern bool PulsanteSinistro;
+//extern String showKeyboard;   // La stringa contiene quello che si e' inserito usando tastiera qwert
 
 // Variabili per Audio
 extern uint Volume; // indica il volume Audio
@@ -123,6 +124,9 @@ extern uint8_t DisplayAcceso ;
 extern uint8_t DisplayMedio ;
 extern uint8_t DisplaySpento ;
 
+extern byte begin[];
+extern String s;
+
 /////////  INIZIO VARIABILI USATE PER LE TEMPORIZAZIONI PRINCIPALMENTE ATTENUAZIONE DEL DISPLAY  ////
 extern uint32_t targetTime ;  // USATA DALLA FUNZIONE mills() PER AGGIORNARE ORARIO OGNI SECONDO
 extern unsigned long previousMillis ; // Variabile per memorizzare l'ultimo tempo
@@ -141,6 +145,7 @@ enum State {
   STATE_ARKANOID,
   STATE_MENU_WIFI,
   STATE_SCAN_WIFI,
+  STATE_BLOCCONOTE,
   STATE_MENU_WEBRADIO,
   STATE_SINCRONIZZA_ORA,
   STATE_SINCRONIZZA_ORA_MANUALE,

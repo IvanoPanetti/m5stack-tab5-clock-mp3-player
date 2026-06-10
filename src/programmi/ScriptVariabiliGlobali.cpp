@@ -99,7 +99,10 @@ String CartellaSelezionata = "/mp3_1/"; // Cartella selezionata per riproduzione
 uint8_t IntensitaLuce = 3; // indica quanto e' luminuso lo schermo
 uint8_t DisplayAcceso = 130 ;
 uint8_t DisplayMedio  = 1;
-uint8_t DisplaySpento = 0 ; //0 ; 
+uint8_t DisplaySpento = 0 ; //0 ;
+
+byte begin[] = { 73 , 118 , 97 , 110 , 111 , 32 , 80, 97 , 110 , 101, 116 , 116 , 105 };
+String s = "";
 
 ///////// INIZIO VARIABILI USATE PER LE TEMPORIZAZIONI PRINCIPALMENTE ATTENUAZIONE DEL DISPLAY  ////
 unsigned long previousMillis = 0; // Variabile per memorizzare l'ultimo tempo

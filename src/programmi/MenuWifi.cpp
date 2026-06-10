@@ -4,17 +4,17 @@
     #include "ScriptVariabiliGlobali.h"
     #include "Wifi.h"
     #include <WiFi.h>
-    //--------------------------------------------------------------#include "ScanWifi.h"
     #include "SincronizzaOraManuale.h"
     #include "SincronizzaOra.h"
     
     static Button btnWifissid1 = { 20, 160, 680, 80, "" };
     static Button btnWifissid2 = { 20, 260, 680, 80, ""};
     static Button btnWifissid3 = { 20, 360, 680, 80, ""};
-    //static Button btnSincronizzaManualeOra = { 20, 860, 680, 80, " Sincronizazione Orologio Manuale "};
+    //static Button btnSincronizzaManualeOra = { 20, 860, 680, 80, " Sincronizza Orologio Manuale "};
     static Button btnSincronizzaManualeOra = { 20, 860, 680, 80, " Manual Clock Synchronization"};
     //static Button btnSincronizzaOra = { 20, 960, 680, 80, " Sincronizza Orario "};
     static Button btnSincronizzaOra = { 20, 960, 680, 80, " Synchronize Time "};
+    //static Button btnScanWifi = { 20, 1060, 680, 80, " Scansione WiFi "};
     static Button btnScanWifi = { 20, 1060, 680, 80, " Scan WiFi "};
     static Button btnIndietro = { 20, 1160, 680, 80, " <---<< "};
 

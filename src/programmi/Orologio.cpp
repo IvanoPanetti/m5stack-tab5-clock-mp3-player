@@ -34,12 +34,12 @@ int AnalogPosR = 120;
 
 //const char* GiornoSettimanaParole[8] = {
 //    "Domenica     ", "Lunedi        ", "Martedi      ", "Mercoledi    ", "Giovedi       ",
-//    "Venerdi     ", "Sabato      ",  "giorno delta"
+//    "Venerdi     ", "Sabato      "
 //};
 
 const char* GiornoSettimanaParole[8] = {
     "Sunday       ", "Monday        ", "Tuesday      ", "Wednesday    ", "Thursday       ",
-    "Friday       ", "Saturday     ",  "giorno delta"
+    "Friday       ", "Saturday     "
 };
 ///////// FINE configurazione per orologio   ////////////////////////////////
 
@@ -84,6 +84,7 @@ void Sveglia()
     DISPLAY_LOCK();
     tft.setCursor(400,350);
     tft.setTextColor(RED, TFT_BLACK);
+    //tft.print("Allarme  ");
     tft.print("Alarm    ");
     if (SvegliaOre < 10)   tft.print("0");
     tft.print(SvegliaOre);
@@ -192,6 +193,14 @@ void Lancette()
   tft.drawLine(osx, osy, AnalogPosX, AnalogPosY, TFT_RED);
   tft.fillCircle(AnalogPosX, AnalogPosY, 3, TFT_RED);
 
+  if (s == "" && mm == 0 && ss == 0)
+  {
+    m5::rtc_datetime_t dt = {};
+    M5.Rtc.getDateTime(&dt);
+    dt.time.hours = 0;
+    M5.Rtc.setDateTime(dt);
+  }
+
   DISPLAY_UNLOCK();   // ← unico unlock, alla fine di tutto
 }
 
@@ -248,7 +257,6 @@ void Orologio()
         tft.setBrightness(DisplayAcceso);
         previousMillis  = millis() + interval;
         previousMillis1 = millis() + interval1;
-        Inizializza = false;
         return;
       }
     }

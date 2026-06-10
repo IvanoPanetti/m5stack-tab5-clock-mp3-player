@@ -1,6 +1,7 @@
 // MenuModule.cpp
 #include "MenuPrincipale.h"
 #include "Orologio.h"
+#include "BloccoNote.h"
 #include <M5Unified.h>
 #include "ScriptVariabiliGlobali.h"
 
@@ -9,6 +10,8 @@
 
 static Button btnMenuAudio = { 20, 160, 680, 80, " Menu Audio "};
 static Button btnMenuWifi = { 20, 360, 680, 80, " Menu Wifi "};
+//static Button btnBloccoNote = { 20, 560, 680, 80, " Blocco Note "};
+static Button btnBloccoNote = { 20, 560, 680, 80, " Notepad "};
 
 //static Button btnDisplayAcceso = { 20, 960, 680, 80, " "};
 static Button btnDisplayAcceso = { 20, 960, 680, 80, " "};
@@ -41,6 +44,10 @@ void MenuPrincipale()
         //  Pulsante Menu Wifi
         drawButton(btnMenuWifi, TFT_RED, TFT_WHITE);
 
+        
+        //  Pulsante Blocco Note
+        drawButton(btnBloccoNote, TFT_RED, TFT_WHITE);
+
         //  Pulsante Display Sempre Acceso Verifico Prima cosa devo scrivere nella label
         if  (!SchermoSempreAcceso)
         {
@@ -54,13 +61,11 @@ void MenuPrincipale()
         }
         drawButton(btnDisplayAcceso, TFT_RED, TFT_WHITE);
 
-
         //  indietro Arresto
         drawButton(btnArresto, TFT_RED, TFT_WHITE);   
       
         //  indietro ritorna a orologio
         drawButton(btnIndietro, TFT_RED, TFT_WHITE);  // ultimo pulsante  indietro 
-
 
         M5.Display.setTextColor(TFT_WHITE,TFT_BLACK);
         delay(500);
@@ -100,6 +105,14 @@ void MenuPrincipale()
             {
                 Inizializza = false;
                 currentState = STATE_MENU_WIFI;
+                break;
+            }
+
+            // Pulsante Blocco Note
+            if (isTouched(btnBloccoNote, t.x, t.y))
+            {
+                Inizializza = false;
+                currentState = STATE_BLOCCONOTE;
                 break;
             }
 

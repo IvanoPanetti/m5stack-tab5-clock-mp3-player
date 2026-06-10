@@ -76,6 +76,7 @@ void WifiScan()
         Inizializza = true;
         M5.Display.clearDisplay();
         M5.Display.setCursor(10, 10);
+        //M5.Display.println("Avvio della scansione Wi-Fi");
         M5.Display.println("Starting WiFi scan...");
         WiFi.mode(WIFI_STA);
         WiFi.begin(ssid, password);
@@ -99,11 +100,13 @@ void WifiScan()
 
     if (n == 0)
     {
+        //M5.Display.println("Nessuna rete trovata.");
         M5.Display.println("No networks found.");
     }
     else
     {
         tft.setTextSize (0.8);
+        //M5.Display.printf("Trovate %d reti:\n", n);
         M5.Display.printf("Found %d networks:\n", n);
         M5.Display.println("----------------------------------");
 
@@ -139,6 +142,7 @@ void WifiScan()
 
     M5.Display.println("----------------------------------");
     M5.Display.println("Scan complete.");
+    //M5.Display.println("Scansione Completa.");
 
     WiFi.scanDelete();
 
