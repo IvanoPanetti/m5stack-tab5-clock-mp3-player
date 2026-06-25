@@ -53,4 +53,4 @@ Codecwebradio11 = 0 ; 0 for radio .mp3 1 for radio .aac
 
 SchermoSempreAcceso = 0 ; if it is 1 the screen always remains lit if it is 0 when the second timer expires it is turned off
 
-BatteriaPresente = 0 ; If the battery is present, enter 1 if it is absent, 0 is used for automatic shutdown if the charge is low.
+BatteriaPresente = 0 ; If the battery is present enter 1, if it is absent 0. is used for automatic shutdown if the charge is low.

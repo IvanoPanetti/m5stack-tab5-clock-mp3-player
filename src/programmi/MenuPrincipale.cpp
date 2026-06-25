@@ -13,6 +13,9 @@ static Button btnMenuWifi = { 20, 360, 680, 80, " Menu Wifi "};
 //static Button btnBloccoNote = { 20, 560, 680, 80, " Blocco Note "};
 static Button btnBloccoNote = { 20, 560, 680, 80, " Notepad "};
 
+//static Button btnCalcolatrice = { 20, 760, 680, 80, " Calcolatrice "};
+static Button btnCalcolatrice = { 20, 760, 680, 80, " Calculator "};
+
 //static Button btnDisplayAcceso = { 20, 960, 680, 80, " "};
 static Button btnDisplayAcceso = { 20, 960, 680, 80, " "};
 //static Button btnArresto = {20,1060,680,80, " Spegnimento "};
@@ -47,6 +50,9 @@ void MenuPrincipale()
         
         //  Pulsante Blocco Note
         drawButton(btnBloccoNote, TFT_RED, TFT_WHITE);
+
+        //  Pulsante Calcolatrice
+        drawButton(btnCalcolatrice, TFT_RED, TFT_WHITE);
 
         //  Pulsante Display Sempre Acceso Verifico Prima cosa devo scrivere nella label
         if  (!SchermoSempreAcceso)
@@ -113,6 +119,14 @@ void MenuPrincipale()
             {
                 Inizializza = false;
                 currentState = STATE_BLOCCONOTE;
+                break;
+            }
+
+            // Pulsante Blocco Note
+            if (isTouched(btnCalcolatrice, t.x, t.y))
+            {
+                Inizializza = false;
+                currentState = STATE_CALCOLATRICE;
                 break;
             }
 

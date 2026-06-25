@@ -9,6 +9,7 @@
 #include "programmi/MenuWifi.h"
 #include "programmi/Wifi.h"
 #include "programmi/BloccoNote.h"
+#include "programmi/Calcolatrice.h"
 #include "programmi/SincronizzaOra.h"
 #include "programmi/SincronizzaOraManuale.h"
 #include "programmi/MenuAudio.h"
@@ -271,6 +272,9 @@ void loop()
       break;
     case STATE_BLOCCONOTE:
       BloccoNote();
+      break;
+    case STATE_CALCOLATRICE:
+      Calcolatrice();
       break;
     case STATE_SINCRONIZZA_ORA:
       SincronizzaOra();

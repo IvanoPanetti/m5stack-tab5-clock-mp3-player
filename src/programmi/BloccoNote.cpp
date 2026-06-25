@@ -394,7 +394,7 @@ void BloccoNote()
                 tft.clear();
                 tft.setCursor(0,100);
                 tft.println("Confirm that you want to cancel?");
-                tft.println("");
+                //tft.println(" ");
                 String visibily = nomeFile.substring(0, nomeFile.length() - 4);
                 tft.print(visibily);
                 TastoOk();
@@ -419,7 +419,7 @@ void BloccoNote()
                     pagina = 0;
                     fileSelezionato = -1;
 
-                    tft.print("Note deleted!");
+                    tft.print(" Note deleted!");
                     delay(1000);
 
                     mostraLista();

@@ -7,9 +7,9 @@
 ## 🇬🇧 English Version
 
 ### **Overview**
-This project turns the **M5Stack Tab5** into an **Clock with Alarm**, an **MP3 Player**, a **Web Radio Player**,
-a **Wi-Fi Scanner**, and a **Notepad** without the need for any other hardware.
-It was created for fun, with AI support, and may contain bugs.
+This project transforms the **M5Stack Tab5** into an **Clock with Alarm**, an **MP3 Player**, a **Web Radio Player**,
+a **Wi-Fi Scanner**, a **Notepad**, and a **Calculator**, all without the need for any other hardware.
+This project was created for fun, with AI support, and may contain bugs.
 Use it freely at your own risk.
 
 The firmware folder contains the compiled firmware.bin,
@@ -23,6 +23,9 @@ This will reset the ES8388 audio codec.
 ---
 
 ## 🔄 Changelog – Latest Updates
+25/06/26
+Added a small calculator to the main menu.
+
 10/06/26
 A notepad has been added to the main menu. Notes will be saved to the SD card in the notes folder.
 If the folder isn't present, it will be created.
@@ -133,7 +136,6 @@ License: **MIT**, unless otherwise specified by third‑party components.
 ---
 
 ## 🛠️ **Planned Features** 
-calculator
   
 
 ---
@@ -145,8 +147,8 @@ calculator
 
 ### **Descrizione**
 Questo progetto trasforma l’**M5Stack Tab5** in un **orologio Con Allarme**  un  **lettore MP3** e un **riproduttore Webradio**
-uno **Scanner wifi** e un **Blocco Note** Senza la necessita' di avere altro hardware.  
-È stato creato per divertimento, con il supporto dell’AI, e può contenere bug.  
+uno **Scanner wifi** un **Blocco Note** e una **Calcolatrice**. il tutto senza la necessita' di avere altro hardware.  
+Il progetto stato creato per divertimento, con il supporto dell’AI, e può contenere bug.  
 Usatelo liberamente a vostro rischio.
 
 La cartella firmware contiene il firmware.bin già compilato
@@ -160,6 +162,9 @@ Questa operazione ripristinerà il codec audio ES8388.
 ---
 
 ## 🔄 Registro Modifiche – Ultimi Aggiornamenti
+25/06/26
+Aggiunto nel menu principale una piccola calcolatrice.
+
 10/06/26
 Inserito nel menu principale un blocco note. Gli Appunti verranno salvati sulla SD nella cartella notes.
 Se la cartella non e' presente verra' creata.
@@ -269,10 +274,9 @@ Licenza: **MIT**, salvo diversa indicazione nei componenti di terze parti.
 ---
 
 ## 🛠️ **Prossimi Sviluppi**
-Calcolatrice
 
 
 ---
 
-### 📅 Updated: 10‑06‑2026  
+### 📅 Updated: 25‑06‑2026  
 **Author: Ivano Panetti**

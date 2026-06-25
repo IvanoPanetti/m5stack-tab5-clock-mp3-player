@@ -102,7 +102,8 @@ void Sveglia()
       DISPLAY_LOCK();
       tft.setBrightness(DisplayAcceso);
       DISPLAY_UNLOCK();
-      Volume            = 200;
+      Volume            = 240;
+      M5.Speaker.setVolume(Volume);
       SvegliaOn         = false;
       DecrementoCanzone = 2;
       AscoltaSequenziale();  // ← mai dentro un lock: è lunga
@@ -250,13 +251,23 @@ void Orologio()
         currentState = STATE_MENU_PRINCIPALE;
       }
 
-      // pulsante invisibile aumenta luminosita'
+      // Pulsante invisibile (copre tutto lo schermo)
+      // Serve SOLO per riportare luminosità a L3 e resettare i timer
       if (isTouched(btnLuminosita3, t.x, t.y))
       {
-        IntensitaLuce = 3;
-        tft.setBrightness(DisplayAcceso);
+        // Se non è già a L3 → riportala
+        if (IntensitaLuce != 3)
+        {
+          IntensitaLuce = 3;
+          tft.setBrightness(DisplayAcceso);
+        }
+
+        // Reset timer
         previousMillis  = millis() + interval;
         previousMillis1 = millis() + interval1;
+
+        // 🔥 NON ridisegnare nulla
+        // 🔥 NON mettere Inizializza = false
         return;
       }
     }
